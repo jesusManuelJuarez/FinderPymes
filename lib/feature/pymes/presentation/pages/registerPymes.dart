@@ -50,7 +50,9 @@ class RegisterPymesPage extends StatelessWidget {
                 const SizedBox(height: 15),
                 ElevatedButton(
                   onPressed: () => Navigator.push(
-                      context, const DatosEmpresaPage() as Route<Object?>),
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DatosEmpresaPage())),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                     backgroundColor: const Color.fromRGBO(4, 104, 252, 1),

@@ -1,3 +1,4 @@
+import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/registerPymes.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FynderPymes',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const RegisterPymesPage(),
-    );
+        title: 'FynderPymes',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const DatosEmpresaPage() //RegisterPymesPage(),
+        );
   }
 }
