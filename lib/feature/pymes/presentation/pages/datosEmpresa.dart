@@ -48,7 +48,7 @@ class DatosEmpresaPage extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height *
                   0.7, // Ajusta esto según tus necesidades
               child: PageView.builder(

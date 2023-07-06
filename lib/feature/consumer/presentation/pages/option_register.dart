@@ -1,5 +1,6 @@
 import 'package:finder_pymes/feature/consumer/presentation/pages/register.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
+import 'package:finder_pymes/feature/pymes/presentation/pages/registerPymes.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,14 @@ class OptionRegister extends StatelessWidget {
                         ),
                         CustomerElevateBottom(
                           label: 'Registrese',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const RegisterPymesPage(),
+                              ),
+                            );
+                          },
                           backgroundColor: DataColors.colorBlueBottom,
                           textColor: DataColors.colorWhite,
                           sizeHorizontal: 25,

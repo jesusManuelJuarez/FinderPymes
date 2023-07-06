@@ -17,11 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: /* ChangeNotifierProvider(
-        create: (context) => StepperState(),
-        child: DatosEmpresaPage(),
-      ), */ //RegisterPymesPage(),
-      const FirstViewPage(),
+      home:  const FirstViewPage()  //RegisterPymesPage(),
     );
   }
 }

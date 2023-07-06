@@ -1,5 +1,4 @@
 import 'package:finder_pymes/feature/consumer/presentation/pages/login.dart';
-import 'package:finder_pymes/feature/consumer/presentation/pages/option_login.dart';
 import 'package:finder_pymes/feature/consumer/presentation/pages/option_register.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
