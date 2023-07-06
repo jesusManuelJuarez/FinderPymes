@@ -13,13 +13,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeResponsize(context);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'FinderPymes',
       theme: ThemeData(
-        //
-
         primarySwatch: Colors.blue,
       ),
-      home: const FirstViewPage(),
+      home: /* ChangeNotifierProvider(
+        create: (context) => StepperState(),
+        child: DatosEmpresaPage(),
+      ), */ //RegisterPymesPage(),
+      const FirstViewPage(),
     );
   }
 }
