@@ -1,7 +1,5 @@
-import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
-import 'package:finder_pymes/feature/pymes/presentation/pages/registerPymes.dart';
-import 'package:provider/provider.dart';
-import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
+import 'package:finder_pymes/feature/consumer/presentation/pages/first_view.dart';
+import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,18 +9,15 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SizeResponsize(context);
     return MaterialApp(
-      title: 'FynderPymes',
+      title: 'FinderPymes',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider(
-        create: (context) => StepperState(),
-        child: DatosEmpresaPage(),
-      ), //RegisterPymesPage(),
+      home:  const FirstViewPage()  //RegisterPymesPage(),
     );
   }
 }

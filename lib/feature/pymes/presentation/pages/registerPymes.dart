@@ -1,5 +1,7 @@
 import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
+import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPymesPage extends StatelessWidget {
   const RegisterPymesPage({super.key});
@@ -50,9 +52,14 @@ class RegisterPymesPage extends StatelessWidget {
                 const SizedBox(height: 15),
                 ElevatedButton(
                   onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DatosEmpresaPage())),
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChangeNotifierProvider(
+                        create: (context) => StepperState(),
+                        child: DatosEmpresaPage(),
+                      ),
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                     backgroundColor: const Color.fromRGBO(4, 104, 252, 1),

@@ -28,7 +28,6 @@ class DatosEmpresaPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -48,9 +47,8 @@ class DatosEmpresaPage extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height *
-                  0.7, // Ajusta esto según tus necesidades
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 1,
               child: PageView.builder(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
@@ -58,7 +56,7 @@ class DatosEmpresaPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   switch (index) {
                     case 0:
-                      return Step1();
+                      return Step1(context);
                     case 1:
                       return Step2();
                     case 2:
@@ -169,9 +167,6 @@ class Stepper extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              )
             ],
           )
         : Expanded(
@@ -243,20 +238,17 @@ class Stepper extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              )
             ],
           ));
   }
 }
 
-Widget Step1() {
+Widget Step1(context) {
   return Column(
     children: [
       Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20.0),
-        height: 300,
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+        height: 490,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -293,37 +285,193 @@ Widget Step1() {
                         fontSize: 15,
                         fontWeight: FontWeight.bold))
               ])),
-              Form(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.transparent,
-                    hintText: "Ingrese nombre de la empresa",
-                    hintStyle:
-                        const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                    errorStyle: const TextStyle(color: Colors.redAccent),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                          color: Color.fromRGBO(242, 142, 144,
-                              1)), // Color del borde en estado normal.
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                          color: Color.fromRGBO(242, 142, 144,
-                              1)), // Color del borde en estado enfocado.
-                    ),
+              TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.transparent,
+                  hintText: "Ingrese nombre de la empresa",
+                  hintStyle:
+                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                  errorStyle: const TextStyle(color: Colors.redAccent),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado normal.
                   ),
-                  validator: (value) {
-                    if (value != null && RegExp(r'[0-9]').hasMatch(value)) {
-                      return 'Solo se acepta texto';
-                    }
-                    return null;
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado enfocado.
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              RichText(
+                  text: const TextSpan(children: [
+                TextSpan(
+                  text: 'Descripción de la empresa ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        color: Color.fromRGBO(242, 142, 144, 1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold))
+              ])),
+              TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.transparent,
+                  hintText: "Escribe una breve descripción de tu empresa",
+                  hintStyle:
+                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                  errorStyle: const TextStyle(color: Colors.redAccent),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado normal.
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado enfocado.
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              RichText(
+                  text: const TextSpan(children: [
+                TextSpan(
+                  text: 'Tipo de industria ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        color: Color.fromRGBO(242, 142, 144, 1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold))
+              ])),
+              TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.transparent,
+                  hintText: "Indique la actividad principal de su empresa",
+                  hintStyle:
+                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                  errorStyle: const TextStyle(color: Colors.redAccent),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado normal.
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado enfocado.
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              RichText(
+                  text: const TextSpan(children: [
+                TextSpan(
+                  text: 'Sitio web ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                TextSpan(
+                    text: '(opcional)',
+                    style: TextStyle(
+                        color: Color.fromRGBO(95, 95, 95, 1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold))
+              ])),
+              TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.transparent,
+                  hintText: "Pon aqui el link de tu sitio web o red social",
+                  hintStyle:
+                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                  errorStyle: const TextStyle(color: Colors.redAccent),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado normal.
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado enfocado.
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () {
+                    // aquí puedes manejar la acción de presionar el botón
                   },
-                  onChanged: (value) {
-                    // Tu lógica aquí
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.transparent, // fondo transparente
+                    side: const BorderSide(
+                        color: Color.fromRGBO(
+                            242, 142, 144, 1)), // bordes de color
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Datos de contacto',
+                        style:
+                            TextStyle(color: Color.fromRGBO(242, 142, 144, 1)),
+                      ),
+                      Icon(Icons.chevron_right,
+                          color: Color.fromRGBO(
+                              242, 142, 144, 1)), // icono Chevron-Right
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Provider.of<StepperState>(context, listen: false)
+                        .setIndex(1);
                   },
+                  child: const Text('Continuar'),
                 ),
               )
             ],
