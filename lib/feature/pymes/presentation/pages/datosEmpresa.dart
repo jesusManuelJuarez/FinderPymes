@@ -25,6 +25,7 @@ class DatosEmpresaPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -56,7 +57,7 @@ class DatosEmpresaPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   switch (index) {
                     case 0:
-                      return Step1(context);
+                      return Step1(_pageController, context);
                     case 1:
                       return Step2();
                     case 2:
@@ -104,32 +105,29 @@ class Stepper extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  GestureDetector(
-                    onTap: onTap,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: index == currentIndex
-                            ? const Color.fromRGBO(241, 135, 137, 1)
-                            : const Color.fromRGBO(95, 95, 95, 1),
-                        border: Border.all(
-                            color: currentIndex >= index
-                                ? const Color.fromRGBO(241, 135, 137, 1)
-                                : Colors.transparent),
-                      ),
-                      child: Center(
-                        child: index == currentIndex
-                            ? const Icon(Icons.edit,
-                                color: Colors
-                                    .white) // Icono de edición para el paso actual.
-                            : (currentIndex > index
-                                ? const Icon(Icons.check,
-                                    color: Colors
-                                        .white) // Icono de check para los pasos completados.
-                                : null), // Nada para los pasos que aún no se han alcanzado.
-                      ),
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: index == currentIndex
+                          ? const Color.fromRGBO(241, 135, 137, 1)
+                          : const Color.fromRGBO(95, 95, 95, 1),
+                      border: Border.all(
+                          color: currentIndex >= index
+                              ? const Color.fromRGBO(241, 135, 137, 1)
+                              : Colors.transparent),
+                    ),
+                    child: Center(
+                      child: index == currentIndex
+                          ? const Icon(Icons.edit,
+                              color: Colors
+                                  .white) // Icono de edición para el paso actual.
+                          : (currentIndex > index
+                              ? const Icon(Icons.check,
+                                  color: Colors
+                                      .white) // Icono de check para los pasos completados.
+                              : null), // Nada para los pasos que aún no se han alcanzado.
                     ),
                   ),
                   if (!isLast)
@@ -175,32 +173,29 @@ class Stepper extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  GestureDetector(
-                    onTap: onTap,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: index == currentIndex
-                            ? const Color.fromRGBO(241, 135, 137, 1)
-                            : const Color.fromRGBO(95, 95, 95, 1),
-                        border: Border.all(
-                            color: currentIndex >= index
-                                ? const Color.fromRGBO(241, 135, 137, 1)
-                                : Colors.transparent),
-                      ),
-                      child: Center(
-                        child: index == currentIndex
-                            ? const Icon(Icons.edit,
-                                color: Colors
-                                    .white) // Icono de edición para el paso actual.
-                            : (currentIndex > index
-                                ? const Icon(Icons.check,
-                                    color: Colors
-                                        .white) // Icono de check para los pasos completados.
-                                : null), // Nada para los pasos que aún no se han alcanzado.
-                      ),
+                  Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: index == currentIndex
+                          ? const Color.fromRGBO(241, 135, 137, 1)
+                          : const Color.fromRGBO(95, 95, 95, 1),
+                      border: Border.all(
+                          color: currentIndex >= index
+                              ? const Color.fromRGBO(241, 135, 137, 1)
+                              : Colors.transparent),
+                    ),
+                    child: Center(
+                      child: index == currentIndex
+                          ? const Icon(Icons.edit,
+                              color: Colors
+                                  .white) // Icono de edición para el paso actual.
+                          : (currentIndex > index
+                              ? const Icon(Icons.check,
+                                  color: Colors
+                                      .white) // Icono de check para los pasos completados.
+                              : null), // Nada para los pasos que aún no se han alcanzado.
                     ),
                   ),
                   Expanded(
@@ -243,7 +238,7 @@ class Stepper extends StatelessWidget {
   }
 }
 
-Widget Step1(context) {
+Widget Step1(PageController _pageController, BuildContext context) {
   return Column(
     children: [
       Container(
@@ -468,8 +463,14 @@ Widget Step1(context) {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Provider.of<StepperState>(context, listen: false)
-                        .setIndex(1);
+                    var stepperState =
+                        Provider.of<StepperState>(context, listen: false);
+                    stepperState.setIndex(stepperState.currentIndex + 1);
+                    _pageController.animateToPage(
+                      stepperState.currentIndex,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
                   },
                   child: const Text('Continuar'),
                 ),
