@@ -25,7 +25,7 @@ class RegisterPymesPage extends StatelessWidget {
         child: SafeArea(
             child: FractionallySizedBox(
           alignment: Alignment.bottomCenter,
-          heightFactor: 0.50,
+          heightFactor: 0.45,
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
@@ -51,7 +51,7 @@ class RegisterPymesPage extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(height: SizeResponsize.safeBlockVertical(1)),
+                //SizedBox(height: SizeResponsize.safeBlockVertical(10)),
                 ElevatedButton(
                   onPressed: () => Navigator.push(
                     context,
