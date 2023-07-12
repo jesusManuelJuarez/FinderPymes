@@ -1,6 +1,7 @@
 import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
 import 'package:flutter/material.dart';
+import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPymesPage extends StatelessWidget {
@@ -30,6 +31,7 @@ class RegisterPymesPage extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   title,
@@ -46,10 +48,10 @@ class RegisterPymesPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color.fromRGBO(241, 135, 137, 1),
-                    fontSize: 16,
+                    fontSize: 20,
                   ),
                 ),
-                const SizedBox(height: 15),
+                //SizedBox(height: SizeResponsize.safeBlockVertical(10)),
                 ElevatedButton(
                   onPressed: () => Navigator.push(
                     context,
