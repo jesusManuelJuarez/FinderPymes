@@ -36,4 +36,6 @@ class SizeResponsize {
   static double safeBlockHorizontal (double percentage) => _safeBlockHorizontal * percentage;
 
   static double safeBlockVertical (double percentage) => _safeBlockVertical * percentage;
+
+  static double textSize (double percentage) => _blockSizeHorizontal * percentage;
 }

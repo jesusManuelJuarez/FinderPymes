@@ -1,5 +1,7 @@
+import 'package:finder_pymes/feature/consumer/presentation/pages/register.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/textformfield_customer.dart';
+import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,8 @@ class LoginConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double sizeTextTittle = SizeResponsize.textSize(7.6388893);
+    double sizeTextNormal = SizeResponsize.textSize(3.8194447);
     return Scaffold(
       backgroundColor: DataColors.colorPinkBackground,
       appBar: AppBar(
@@ -20,7 +24,7 @@ class LoginConsumer extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 100.0),
+              padding: EdgeInsets.only(bottom: SizeResponsize.textSize(25.462964)),
               child: Image.asset('assets/images/logo_fpy.png'),
             ),
           ),
@@ -37,25 +41,25 @@ class LoginConsumer extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 140.0),
+                          padding: EdgeInsets.only(right: SizeResponsize.textSize(35.64815)),
                           child: Text(
                             'Iniciar Sesión',
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                              fontSize: 30,
+                              fontSize: sizeTextTittle,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 100.0),
+                          padding: EdgeInsets.only(right: SizeResponsize.textSize(21.64352)),
                           child: Text(
                             'Inicio de sesion para consumidores',
-                            style: TextStyle(fontWeight: FontWeight.w400),
+                            style: TextStyle(fontWeight: FontWeight.w400, fontSize: sizeTextNormal),
                           ),
                         ),
                       ],
@@ -63,19 +67,19 @@ class LoginConsumer extends StatelessWidget {
                   ),
                   SizedBox(
                     width: SizeResponsize.safeBlockHorizontal(82),
-                    child: const Column(
+                    child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 284.0, bottom: 10),
+                          padding: EdgeInsets.only(right: SizeResponsize.textSize(72.314813), bottom: SizeResponsize.textSize(2.546296444)),
                           child: Text(
                             'Email',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: sizeTextNormal,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
-                        CustomerTextFormField(
+                        const CustomerTextFormField(
                           label: 'name.lastname@example.com',
                           iconSuffixIcon: Icon(Icons.email),
                           borderColor: DataColors.colorGrey,
@@ -87,19 +91,19 @@ class LoginConsumer extends StatelessWidget {
                   ),
                   SizedBox(
                     width: SizeResponsize.safeBlockHorizontal(82),
-                    child: const Column(
+                    child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 244.0, bottom: 10),
+                          padding: EdgeInsets.only(right: SizeResponsize.textSize(62.12963323), bottom: SizeResponsize.textSize(2.546296444)),
                           child: Text(
                             'Contraseña',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: sizeTextNormal,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
-                        CustomerTextFormField(
+                        const CustomerTextFormField(
                           label: 'Contraseña',
                           iconSuffixIcon: Icon(Icons.password),
                           borderColor: DataColors.colorGrey,
@@ -111,31 +115,46 @@ class LoginConsumer extends StatelessWidget {
                   ),
                   CustomerElevateBottom(
                     label: 'Iniciar Sesión',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeFirst(),
+                        ),
+                      );
+                    },
                     backgroundColor: DataColors.colorBlueBottom,
                     textColor: DataColors.colorWhite,
-                    sizeHorizontal: 25.8,
+                    sizeHorizontal: SizeResponsize.textSize(6.569444825),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 68.0),
+                    padding: EdgeInsets.only(right: SizeResponsize.textSize(17.31481582)),
                     child: RichText(
                       text: TextSpan(
                         children: [
-                          const TextSpan(
+                          TextSpan(
                             text: '¿Aún no tienes cuenta? ',
                             style: TextStyle(
                               color: DataColors.colorGreyText,
-                              fontSize: 15,
+                              fontSize: sizeTextNormal,
                             ),
                           ),
                           WidgetSpan(
                             child: GestureDetector(
-                              onTap: () {},
-                              child: const Text(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegisterConsumer(),
+                                  ),
+                                );
+                              },
+                              child: Text(
                                 '¡Regístrate ya!',
                                 style: TextStyle(
                                   color: DataColors.colorBlueText,
-                                  fontSize: 15,
+                                  fontSize: sizeTextNormal,
                                 ),
                               ),
                             ),
