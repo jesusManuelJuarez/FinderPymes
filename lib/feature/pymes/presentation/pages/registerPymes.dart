@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
 import 'package:flutter/material.dart';

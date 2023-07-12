@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class DataColors {
   static const Color colorTransparent =
-      Color.fromARGB(0, 255, 255, 255);
-  static const Color colorPinkBackground = Color(0xFFF18789);
+      Color.fromARGB(0, 255, 255, 255); // Sirve
+  static const Color colorPinkBackground = Color(0xFFF18789); // Sirve
+  static const Color colorPinkSuave = Color(0xFFFAE5E8);
+  static const Color colorWhite65Transparent = Color.fromRGBO(249, 249, 249, 0.655);
   static const Color colorBlueBottom = Color(0xFF0468FC);
   static const Color colorBlack = Color(0xFF000000);
   static const Color colorWhite = Color(0xFFFFFFFF);
