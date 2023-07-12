@@ -51,7 +51,7 @@ class RegisterPymesPage extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
-                //SizedBox(height: SizeResponsize.safeBlockVertical(10)),
+                SizedBox(height: SizeResponsize.safeBlockVertical(5)),
                 ElevatedButton(
                   onPressed: () => Navigator.push(
                     context,

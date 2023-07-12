@@ -1,9 +1,9 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'stepper_state.dart';
 
 class DatosEmpresaPage extends StatelessWidget {
@@ -19,7 +19,7 @@ class DatosEmpresaPage extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: Color.fromRGBO(241, 135, 137, 1),
           ),
           onPressed: () {},
@@ -61,9 +61,9 @@ class DatosEmpresaPage extends StatelessWidget {
                     case 1:
                       return Step2(_pageController, context);
                     case 2:
-                      return Step3();
+                      return Step3(_pageController, context);
                     case 3:
-                      return Step4();
+                      return Step4(_pageController, context);
                   }
                   return Container();
                 },
@@ -110,13 +110,13 @@ class Stepper extends StatelessWidget {
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: index == currentIndex
+                      color: index <= currentIndex
                           ? const Color.fromRGBO(241, 135, 137, 1)
                           : const Color.fromRGBO(95, 95, 95, 1),
                       border: Border.all(
                           color: currentIndex >= index
-                              ? const Color.fromRGBO(241, 135, 137, 1)
-                              : Colors.transparent),
+                              ? const Color.fromRGBO(95, 95, 95, 1)
+                              : const Color.fromRGBO(95, 95, 95, 1)),
                     ),
                     child: Center(
                       child: index == currentIndex
@@ -154,7 +154,7 @@ class Stepper extends StatelessWidget {
                 height: SizeResponsize.blockSizeVertical(3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: index == currentIndex
+                  color: index <= currentIndex
                       ? const Color.fromRGBO(241, 135, 137, 1)
                       : const Color.fromRGBO(95, 95, 95, 1),
                 ),
@@ -179,13 +179,13 @@ class Stepper extends StatelessWidget {
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: index == currentIndex
+                      color: index <= currentIndex
                           ? const Color.fromRGBO(241, 135, 137, 1)
                           : const Color.fromRGBO(95, 95, 95, 1),
                       border: Border.all(
                           color: currentIndex >= index
-                              ? const Color.fromRGBO(241, 135, 137, 1)
-                              : Colors.transparent),
+                              ? const Color.fromRGBO(95, 95, 95, 1)
+                              : const Color.fromRGBO(95, 95, 95, 1)),
                     ),
                     child: Center(
                       child: index == currentIndex
@@ -222,7 +222,7 @@ class Stepper extends StatelessWidget {
                 height: SizeResponsize.blockSizeVertical(3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: index == currentIndex
+                  color: index <= currentIndex
                       ? const Color.fromRGBO(241, 135, 137, 1)
                       : const Color.fromRGBO(95, 95, 95, 1),
                 ),
@@ -683,17 +683,133 @@ Widget Step2(PageController pageController, BuildContext context) {
   );
 }
 
-Widget Step3() {
-  return Container(
-    height: 35.0,
-    width: 35.0,
-    decoration: const BoxDecoration(
-      color: Color.fromARGB(255, 37, 17, 149),
-    ),
+Widget Step3(PageController pageController, BuildContext context) {
+  return Column(
+    children: [
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        height: SizeResponsize.blockSizeVertical(75.0),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 4,
+                blurRadius: 4,
+                offset: const Offset(0, 3),
+              )
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              RichText(
+                  text: TextSpan(children: [
+                TextSpan(
+                  text:
+                      'Agrega imagenes para darle más identidad a tu negocio ',
+                  style: TextStyle(
+                      color: const Color.fromRGBO(242, 142, 144, 1),
+                      fontSize: MediaQuery.of(context).size.width * 0.06,
+                      fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                    text: '(Tres minimo)',
+                    style: TextStyle(
+                      color: const Color.fromRGBO(95, 95, 95, 1),
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                    ))
+              ])),
+              DottedBorder(
+                color: const Color.fromRGBO(95, 95, 95, 1),
+                strokeWidth: 2,
+                child: SizedBox(
+                  width: SizeResponsize.blockSizeHorizontal(100),
+                  height: SizeResponsize.blockSizeVertical(20),
+                  child: Center(
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.camera,
+                          color: const Color.fromRGBO(242, 142, 144, 1),
+                          size: MediaQuery.of(context).size.width * 0.1,
+                        )),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: SizeResponsize.blockSizeVertical(30.0),
+              ),
+              SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(95, 95, 95, 1)),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            SizeResponsize.blockSizeHorizontal(40),
+                            50)), // Tamaño mínimo
+                      ),
+                      onPressed: () {
+                        var stepperState =
+                            Provider.of<StepperState>(context, listen: false);
+                        stepperState.setIndex(stepperState.currentIndex - 1);
+                        pageController.animateToPage(
+                          stepperState.currentIndex,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: const Text(
+                        'Atrás',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(4, 104, 252, 1)),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            SizeResponsize.blockSizeHorizontal(40),
+                            50)), // Tamaño mínimo
+                      ),
+                      onPressed: () {
+                        var stepperState =
+                            Provider.of<StepperState>(context, listen: false);
+                        stepperState.setIndex(stepperState.currentIndex + 1);
+                        pageController.animateToPage(
+                          stepperState.currentIndex,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: const Text(
+                        'Continuar',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    ],
   );
 }
 
-Widget Step4() {
+Widget Step4(PageController pageController, BuildContext context) {
   return Container(
     height: 35.0,
     width: 35.0,
