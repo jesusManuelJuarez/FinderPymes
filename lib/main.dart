@@ -1,4 +1,4 @@
-import 'package:finder_pymes/feature/consumer/presentation/pages/first_view.dart';
+import 'package:finder_pymes/feature/post/presentation/pages/init_view.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  const FirstViewPage()  //RegisterPymesPage(),
+      home: const InitView(),
     );
   }
 }
