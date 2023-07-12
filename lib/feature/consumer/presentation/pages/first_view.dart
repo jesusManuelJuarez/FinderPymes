@@ -10,6 +10,8 @@ class FirstViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double sizeText = SizeResponsize.textSize(5.092592595539695);
+
     return Scaffold(
       backgroundColor: DataColors.colorPinkBackground,
       appBar: AppBar(
@@ -24,21 +26,21 @@ class FirstViewPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Image.asset('assets/images/logo_no_letters.png'),
-                const Text(
+                Text(
                   'FinderPymes',
                   style: TextStyle(
                     color: DataColors.colorWhite,
-                    fontSize: 20,
+                    fontSize: sizeText,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: SizeResponsize.textSize(12.731482)),
                   child: Text(
                     'Descubre promociones exclusivas y apoya a las PYMES de tu localidad con FinderPymes. \n ¡Conéctate, ahorra y disfruta!',
                     style: TextStyle(
                       color: DataColors.colorWhite,
-                      fontSize: 20,
+                      fontSize: sizeText,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -74,7 +76,7 @@ class FirstViewPage extends StatelessWidget {
                     },
                     backgroundColor: DataColors.colorWhite,
                     textColor: DataColors.colorBlueText,
-                    sizeHorizontal: 25,
+                    sizeHorizontal: SizeResponsize.textSize(7),
                   ),
                   CustomerElevateBottom(
                     label: 'Inicia Sesión',
@@ -88,7 +90,7 @@ class FirstViewPage extends StatelessWidget {
                     },
                     backgroundColor: DataColors.colorBlueBottom,
                     textColor: DataColors.colorWhite,
-                    sizeHorizontal: 22.2,
+                    sizeHorizontal: SizeResponsize.textSize(6),
                   ),
                 ],
               ),

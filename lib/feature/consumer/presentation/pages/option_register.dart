@@ -10,6 +10,7 @@ class OptionRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double sizeText = SizeResponsize.textSize(5.092592887);
     return Scaffold(
       backgroundColor: DataColors.colorPinkBackground,
       appBar: AppBar(
@@ -38,12 +39,12 @@ class OptionRegister extends StatelessWidget {
                   SizedBox(
                     child: Column(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 100.0, bottom: 10),
+                        Padding(
+                          padding: EdgeInsets.only(right: SizeResponsize.textSize(25.46296444), bottom: SizeResponsize.textSize(2.546296444)),
                           child: Text(
                             '¿Eres un Consumidor?',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: sizeText,
                               color: DataColors.colorWhite,
                               fontWeight: FontWeight.bold,
                             ),
@@ -61,7 +62,7 @@ class OptionRegister extends StatelessWidget {
                           },
                           backgroundColor: DataColors.colorWhite,
                           textColor: DataColors.colorBlueText,
-                          sizeHorizontal: 25,
+                          sizeHorizontal: SizeResponsize.textSize(6.365741109),
                         ),
                       ],
                     ),
@@ -69,12 +70,12 @@ class OptionRegister extends StatelessWidget {
                   SizedBox(
                     child: Column(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 100.0, bottom: 10),
+                        Padding(
+                          padding: EdgeInsets.only(right: SizeResponsize.textSize(25.46296444), bottom: SizeResponsize.textSize(2.546296444)),
                           child: Text(
                             'O ¿Eres una PYME?',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: sizeText,
                               color: DataColors.colorWhite,
                               fontWeight: FontWeight.bold,
                             ),
@@ -92,7 +93,7 @@ class OptionRegister extends StatelessWidget {
                           },
                           backgroundColor: DataColors.colorBlueBottom,
                           textColor: DataColors.colorWhite,
-                          sizeHorizontal: 25,
+                          sizeHorizontal: SizeResponsize.textSize(6.365741109),
                         ),
                       ],
                     ),
