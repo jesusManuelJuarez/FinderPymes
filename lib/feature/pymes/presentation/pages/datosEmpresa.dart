@@ -244,7 +244,7 @@ Widget Step1(PageController pageController, BuildContext context) {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         padding: const EdgeInsets.symmetric(vertical: 10),
-        height: SizeResponsize.blockSizeVertical(75.0),
+        height: SizeResponsize.safeBlockVertical(75.0),
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -483,7 +483,7 @@ Widget Step2(PageController pageController, BuildContext context) {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         padding: const EdgeInsets.symmetric(vertical: 10),
-        height: SizeResponsize.blockSizeVertical(75.0),
+        height: SizeResponsize.safeBlockVertical(75.0),
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -689,7 +689,7 @@ Widget Step3(PageController pageController, BuildContext context) {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         padding: const EdgeInsets.symmetric(vertical: 10),
-        height: SizeResponsize.blockSizeVertical(75.0),
+        height: SizeResponsize.safeBlockVertical(75.0),
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -746,7 +746,7 @@ Widget Step3(PageController pageController, BuildContext context) {
                 ),
               ),
               SizedBox(
-                height: SizeResponsize.blockSizeVertical(30.0),
+                height: SizeResponsize.blockSizeVertical(25.0),
               ),
               SizedBox(
                 child: Row(
