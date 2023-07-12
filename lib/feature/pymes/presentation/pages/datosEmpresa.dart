@@ -733,7 +733,7 @@ Widget Step3(PageController pageController, BuildContext context) {
                 strokeWidth: 2,
                 child: SizedBox(
                   width: SizeResponsize.blockSizeHorizontal(100),
-                  height: SizeResponsize.blockSizeVertical(20),
+                  height: SizeResponsize.blockSizeVertical(10),
                   child: Center(
                     child: IconButton(
                         onPressed: () {},
