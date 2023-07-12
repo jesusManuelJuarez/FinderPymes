@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 
+import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +28,6 @@ class DatosEmpresaPage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -49,7 +49,7 @@ class DatosEmpresaPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 1,
+              height: SizeResponsize.sizeScreenHeigth,
               child: PageView.builder(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
@@ -59,7 +59,7 @@ class DatosEmpresaPage extends StatelessWidget {
                     case 0:
                       return Step1(_pageController, context);
                     case 1:
-                      return Step2();
+                      return Step2(_pageController, context);
                     case 2:
                       return Step3();
                     case 3:
@@ -101,9 +101,9 @@ class Stepper extends StatelessWidget {
     return isLast
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 35,
@@ -150,10 +150,10 @@ class Stepper extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Container(
-                width: 80.0,
-                height: 25.0,
+                width: SizeResponsize.blockSizeHorizontal(20),
+                height: SizeResponsize.blockSizeVertical(3),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                   color: index == currentIndex
                       ? const Color.fromRGBO(241, 135, 137, 1)
                       : const Color.fromRGBO(95, 95, 95, 1),
@@ -172,6 +172,7 @@ class Stepper extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 35,
@@ -200,11 +201,10 @@ class Stepper extends StatelessWidget {
                   ),
                   Expanded(
                       child: Container(
-                    width: 20.0,
-                    height: 2,
+                    height: 1,
                     color: currentIndex >= index + 1
                         ? const Color.fromRGBO(241, 135, 137, 1)
-                        : Colors.black,
+                        : const Color.fromRGBO(95, 95, 95, 1),
                   ))
                 ],
               ),
@@ -218,10 +218,10 @@ class Stepper extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Container(
-                width: 80.0,
-                height: 25.0,
+                width: SizeResponsize.blockSizeHorizontal(20),
+                height: SizeResponsize.blockSizeVertical(3),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                   color: index == currentIndex
                       ? const Color.fromRGBO(241, 135, 137, 1)
                       : const Color.fromRGBO(95, 95, 95, 1),
@@ -238,12 +238,13 @@ class Stepper extends StatelessWidget {
   }
 }
 
-Widget Step1(PageController _pageController, BuildContext context) {
+Widget Step1(PageController pageController, BuildContext context) {
   return Column(
     children: [
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        height: 490,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        height: SizeResponsize.blockSizeVertical(75.0),
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -260,9 +261,10 @@ Widget Step1(PageController _pageController, BuildContext context) {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               RichText(
                   text: const TextSpan(children: [
@@ -302,9 +304,6 @@ Widget Step1(PageController _pageController, BuildContext context) {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               RichText(
                   text: const TextSpan(children: [
                 TextSpan(
@@ -342,9 +341,6 @@ Widget Step1(PageController _pageController, BuildContext context) {
                             1)), // Color del borde en estado enfocado.
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
               ),
               RichText(
                   text: const TextSpan(children: [
@@ -384,9 +380,6 @@ Widget Step1(PageController _pageController, BuildContext context) {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               RichText(
                   text: const TextSpan(children: [
                 TextSpan(
@@ -425,9 +418,6 @@ Widget Step1(PageController _pageController, BuildContext context) {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
@@ -455,24 +445,28 @@ Widget Step1(PageController _pageController, BuildContext context) {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        const Color.fromRGBO(4, 104, 252, 1)),
+                  ),
                   onPressed: () {
                     var stepperState =
                         Provider.of<StepperState>(context, listen: false);
                     stepperState.setIndex(stepperState.currentIndex + 1);
-                    _pageController.animateToPage(
+                    pageController.animateToPage(
                       stepperState.currentIndex,
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       curve: Curves.easeIn,
                     );
                   },
-                  child: const Text('Continuar'),
+                  child: const Text(
+                    'Continuar',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               )
             ],
@@ -483,15 +477,206 @@ Widget Step1(PageController _pageController, BuildContext context) {
   );
 }
 
-Widget Step2() {
+Widget Step2(PageController pageController, BuildContext context) {
   return Column(
     children: [
       Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        height: 35.0,
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        height: SizeResponsize.blockSizeVertical(75.0),
         width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 23, 120, 89),
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 4,
+                blurRadius: 4,
+                offset: const Offset(0, 3),
+              )
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              RichText(
+                  text: const TextSpan(children: [
+                TextSpan(
+                  text: 'RFC ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                TextSpan(
+                    text: '(opcional)',
+                    style: TextStyle(
+                        color: Color.fromRGBO(95, 95, 95, 1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold))
+              ])),
+              TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.transparent,
+                  hintText: "Ingrese su RFC con homoclave ",
+                  hintStyle:
+                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                  errorStyle: const TextStyle(color: Colors.redAccent),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado normal.
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado enfocado.
+                  ),
+                ),
+              ),
+              RichText(
+                  text: const TextSpan(children: [
+                TextSpan(
+                  text: 'Regimen fiscal ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                TextSpan(
+                    text: '(opcional)',
+                    style: TextStyle(
+                        color: Color.fromRGBO(95, 95, 95, 1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold))
+              ])),
+              TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.transparent,
+                  hintText: "Ingrese su regimen fiscal",
+                  hintStyle:
+                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                  errorStyle: const TextStyle(color: Colors.redAccent),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado normal.
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado enfocado.
+                  ),
+                ),
+              ),
+              RichText(
+                  text: const TextSpan(children: [
+                TextSpan(
+                  text: 'Domicilio fiscal ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+                TextSpan(
+                    text: '(opcional)',
+                    style: TextStyle(
+                        color: Color.fromRGBO(95, 95, 95, 1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold))
+              ])),
+              TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.transparent,
+                  hintText: "En caso de tener, ingrese su domicilio fiscal",
+                  hintStyle:
+                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                  errorStyle: const TextStyle(color: Colors.redAccent),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado normal.
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(242, 142, 144,
+                            1)), // Color del borde en estado enfocado.
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: SizeResponsize.blockSizeVertical(20.0),
+              ),
+              SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(95, 95, 95, 1)),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            SizeResponsize.blockSizeHorizontal(40),
+                            50)), // Tamaño mínimo
+                      ),
+                      onPressed: () {
+                        var stepperState =
+                            Provider.of<StepperState>(context, listen: false);
+                        stepperState.setIndex(stepperState.currentIndex - 1);
+                        pageController.animateToPage(
+                          stepperState.currentIndex,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: const Text(
+                        'Atrás',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(4, 104, 252, 1)),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            SizeResponsize.blockSizeHorizontal(40),
+                            50)), // Tamaño mínimo
+                      ),
+                      onPressed: () {
+                        var stepperState =
+                            Provider.of<StepperState>(context, listen: false);
+                        stepperState.setIndex(stepperState.currentIndex + 1);
+                        pageController.animateToPage(
+                          stepperState.currentIndex,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: const Text(
+                        'Continuar',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     ],
