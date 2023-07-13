@@ -1,6 +1,5 @@
 import 'package:finder_pymes/feature/consumer/presentation/widgets/textformfield_customer.dart';
 import 'package:finder_pymes/feature/post/presentation/widgets/bottom_navbar.dart';
-import 'package:finder_pymes/feature/post/presentation/widgets/category.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double sizeTextTittle = SizeResponsize.textSize(6.5);
-    double sizeTextNormal = SizeResponsize.textSize(5.092592887);
+    // double sizeTextNormal = SizeResponsize.textSize(5.092592887);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(

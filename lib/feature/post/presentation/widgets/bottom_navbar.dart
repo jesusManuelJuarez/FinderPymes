@@ -1,4 +1,4 @@
-import 'package:finder_pymes/feature/consumer/presentation/pages/profile.dart';
+import 'package:finder_pymes/feature/consumer/presentation/pages/first_view.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/notifications.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/search.dart';
@@ -149,7 +149,7 @@ Widget customBottomNavigationBar(
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ProfileConsumer(),
+                          builder: (context) => const FirstViewPage(),
                         ),
                       );
                     }
