@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import 'image_picker_provider.dart';
+
 class RegisterPymesPage extends StatelessWidget {
   const RegisterPymesPage({super.key});
 
@@ -57,8 +59,15 @@ class RegisterPymesPage extends StatelessWidget {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ChangeNotifierProvider(
-                        create: (context) => StepperState(),
+                      builder: (context) => MultiProvider(
+                        providers: [
+                          ChangeNotifierProvider(
+                            create: (context) => StepperState(),
+                          ),
+                          ChangeNotifierProvider(
+                            create: (context) => ImagePickerProvider(),
+                          ),
+                        ],
                         child: DatosEmpresaPage(),
                       ),
                     ),

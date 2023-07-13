@@ -1,13 +1,10 @@
-// ignore_for_file: file_names, non_constant_identifier_names
-
-import 'dart:io';
-
+// ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables
 import 'package:dotted_border/dotted_border.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'image_picker_provider.dart';
 import 'stepper_state.dart';
-import 'package:image_picker/image_picker.dart';
 
 class DatosEmpresaPage extends StatelessWidget {
   final PageController _pageController = PageController();
@@ -686,28 +683,6 @@ Widget Step2(PageController pageController, BuildContext context) {
   );
 }
 
-File? imagen;
-final picker = ImagePicker();
-
-Future selImagen(op) async {
-  var pickedFile;
-  if (op == 1) {
-    pickedFile = await picker.pickImage(source: ImageSource.camera);
-  } else {
-    pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  }
-
-  setState(() {
-    if (pickedFile != null) {
-      imagen = File(pickedFile.path);
-    } else {
-      print('No seleccionaste ninguna foto');
-    }
-  });
-}
-
-void setState(Null Function() param0) {}
-
 void opciones(BuildContext context) {
   showDialog(
       context: context,
@@ -719,7 +694,8 @@ void opciones(BuildContext context) {
               children: [
                 InkWell(
                   onTap: () {
-                    selImagen(1);
+                    Provider.of<ImagePickerProvider>(context, listen: false)
+                        .selImagen(1);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(20),
@@ -740,7 +716,8 @@ void opciones(BuildContext context) {
                 ),
                 InkWell(
                   onTap: () {
-                    selImagen(2);
+                    Provider.of<ImagePickerProvider>(context, listen: false)
+                        .selImagen(2);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(20),
@@ -789,132 +766,141 @@ void opciones(BuildContext context) {
 }
 
 Widget Step3(PageController pageController, BuildContext context) {
-  File imagen;
-  return Column(
-    children: [
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        height: SizeResponsize.safeBlockVertical(75.0),
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 255, 255, 255),
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 4,
-                blurRadius: 4,
-                offset: const Offset(0, 3),
-              )
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(
-                height: 5,
-              ),
-              RichText(
-                  text: TextSpan(children: [
-                TextSpan(
-                  text:
-                      'Agrega imagenes para darle más identidad a tu negocio ',
-                  style: TextStyle(
-                      color: const Color.fromRGBO(242, 142, 144, 1),
-                      fontSize: MediaQuery.of(context).size.width * 0.06,
-                      fontWeight: FontWeight.bold),
-                ),
-                TextSpan(
-                    text: '(Tres minimo)',
-                    style: TextStyle(
-                      color: const Color.fromRGBO(95, 95, 95, 1),
-                      fontSize: MediaQuery.of(context).size.width * 0.05,
-                    ))
-              ])),
-              DottedBorder(
-                color: const Color.fromRGBO(95, 95, 95, 1),
-                strokeWidth: 2,
-                child: SizedBox(
-                  width: SizeResponsize.blockSizeHorizontal(100),
-                  height: SizeResponsize.blockSizeVertical(10),
-                  child: Center(
-                    child: IconButton(
-                        onPressed: () {
-                          opciones(context);
-                        },
-                        icon: Icon(
-                          Icons.camera,
-                          color: const Color.fromRGBO(242, 142, 144, 1),
-                          size: MediaQuery.of(context).size.width * 0.1,
-                        )),
+  return Consumer<ImagePickerProvider>(
+    builder: (context, imagePicker, child) {
+      return Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            height: SizeResponsize.safeBlockVertical(75.0),
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 4,
+                    blurRadius: 4,
+                    offset: const Offset(0, 3),
+                  )
+                ]),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(
+                    height: 5,
                   ),
-                ),
-              ),
-              SizedBox(
-                height: SizeResponsize.blockSizeVertical(25.0),
-              ),
-              //imagen == null ? Center() : Image.file(imagen),
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(95, 95, 95, 1)),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(
-                            SizeResponsize.blockSizeHorizontal(40),
-                            50)), // Tamaño mínimo
-                      ),
-                      onPressed: () {
-                        var stepperState =
-                            Provider.of<StepperState>(context, listen: false);
-                        stepperState.setIndex(stepperState.currentIndex - 1);
-                        pageController.animateToPage(
-                          stepperState.currentIndex,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeIn,
-                        );
-                      },
-                      child: const Text(
-                        'Atrás',
-                        style: TextStyle(fontSize: 20),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                      text:
+                          'Agrega imagenes para darle más identidad a tu negocio ',
+                      style: TextStyle(
+                          color: const Color.fromRGBO(242, 142, 144, 1),
+                          fontSize: MediaQuery.of(context).size.width * 0.06,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(
+                        text: '(Tres minimo)',
+                        style: TextStyle(
+                          color: const Color.fromRGBO(95, 95, 95, 1),
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
+                        ))
+                  ])),
+                  DottedBorder(
+                    color: const Color.fromRGBO(95, 95, 95, 1),
+                    strokeWidth: 2,
+                    child: SizedBox(
+                      width: SizeResponsize.blockSizeHorizontal(100),
+                      height: SizeResponsize.blockSizeVertical(10),
+                      child: Center(
+                        child: IconButton(
+                            onPressed: () {
+                              opciones(context);
+                            },
+                            icon: Icon(
+                              Icons.camera,
+                              color: const Color.fromRGBO(242, 142, 144, 1),
+                              size: MediaQuery.of(context).size.width * 0.1,
+                            )),
                       ),
                     ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(4, 104, 252, 1)),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(
-                            SizeResponsize.blockSizeHorizontal(40),
-                            50)), // Tamaño mínimo
-                      ),
-                      onPressed: () {
-                        var stepperState =
-                            Provider.of<StepperState>(context, listen: false);
-                        stepperState.setIndex(stepperState.currentIndex + 1);
-                        pageController.animateToPage(
-                          stepperState.currentIndex,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeIn,
-                        );
-                      },
-                      child: const Text(
-                        'Continuar',
-                        style: TextStyle(fontSize: 20),
-                      ),
+                  ),
+                  SizedBox(
+                    height: SizeResponsize.blockSizeVertical(25.0),
+                  ),
+                  imagePicker.imagen != null
+                      ? Image.file(imagePicker.imagen!)
+                      : const Center(),
+                  SizedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(95, 95, 95, 1)),
+                            minimumSize: MaterialStateProperty.all<Size>(Size(
+                                SizeResponsize.blockSizeHorizontal(40),
+                                50)), // Tamaño mínimo
+                          ),
+                          onPressed: () {
+                            var stepperState = Provider.of<StepperState>(
+                                context,
+                                listen: false);
+                            stepperState
+                                .setIndex(stepperState.currentIndex - 1);
+                            pageController.animateToPage(
+                              stepperState.currentIndex,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeIn,
+                            );
+                          },
+                          child: const Text(
+                            'Atrás',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(4, 104, 252, 1)),
+                            minimumSize: MaterialStateProperty.all<Size>(Size(
+                                SizeResponsize.blockSizeHorizontal(40),
+                                50)), // Tamaño mínimo
+                          ),
+                          onPressed: () {
+                            var stepperState = Provider.of<StepperState>(
+                                context,
+                                listen: false);
+                            stepperState
+                                .setIndex(stepperState.currentIndex + 1);
+                            pageController.animateToPage(
+                              stepperState.currentIndex,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeIn,
+                            );
+                          },
+                          child: const Text(
+                            'Continuar',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )
-            ],
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ],
+        ],
+      );
+    },
   );
 }
 
