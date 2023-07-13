@@ -2,6 +2,7 @@
 
 import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
+import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -26,14 +27,13 @@ class RegisterPymesPage extends StatelessWidget {
               image: AssetImage("assets/images/Rectangle 18.png"),
               fit: BoxFit.cover),
         ),
-        child: SafeArea(
-            child: FractionallySizedBox(
-          alignment: Alignment.center,
-          heightFactor: 0.40,
+        child: Center(
           child: Container(
             padding: const EdgeInsets.all(30),
+            height: SizeResponsize.blockSizeVertical(40),
+            width: SizeResponsize.sizeScreenWidth,
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(30)),
+                color: Color.fromARGB(214, 255, 255, 255), borderRadius: BorderRadius.circular(30)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -87,7 +87,7 @@ class RegisterPymesPage extends StatelessWidget {
               ],
             ),
           ),
-        )),
+        ),
       ),
     );
   }
