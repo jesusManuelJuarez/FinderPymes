@@ -3,7 +3,7 @@
 import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
 import 'package:flutter/material.dart';
-import 'package:finder_pymes/settings/size_responsive.dart';
+
 import 'package:provider/provider.dart';
 
 class RegisterPymesPage extends StatelessWidget {
@@ -26,10 +26,10 @@ class RegisterPymesPage extends StatelessWidget {
         ),
         child: SafeArea(
             child: FractionallySizedBox(
-          alignment: Alignment.bottomCenter,
-          heightFactor: 0.50,
+          alignment: Alignment.center,
+          heightFactor: 0.40,
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: Column(
@@ -38,22 +38,21 @@ class RegisterPymesPage extends StatelessWidget {
                 Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color.fromRGBO(95, 95, 95, 1),
+                  style: TextStyle(
+                    color: const Color.fromRGBO(95, 95, 95, 1),
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: MediaQuery.of(context).size.width * 0.08,
                   ),
                 ),
-                const SizedBox(height: 15),
                 Text(
                   description,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color.fromRGBO(241, 135, 137, 1),
-                    fontSize: 20,
+                  style: TextStyle(
+                    color: const Color.fromRGBO(241, 135, 137, 1),
+                    fontSize: MediaQuery.of(context).size.width * 0.05,
                   ),
                 ),
-                SizedBox(height: SizeResponsize.safeBlockVertical(1)),
+                //SizedBox(height: SizeResponsize.blockSizeHorizontal(2)),
                 ElevatedButton(
                   onPressed: () => Navigator.push(
                     context,
@@ -65,15 +64,14 @@ class RegisterPymesPage extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
+                    minimumSize: const Size.fromHeight(60),
                     backgroundColor: const Color.fromRGBO(4, 104, 252, 1),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Comenzar registro",
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
                     ),
                   ),
                 )

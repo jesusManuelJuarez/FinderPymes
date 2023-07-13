@@ -1,10 +1,13 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'stepper_state.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DatosEmpresaPage extends StatelessWidget {
   final PageController _pageController = PageController();
@@ -683,7 +686,110 @@ Widget Step2(PageController pageController, BuildContext context) {
   );
 }
 
+File? imagen;
+final picker = ImagePicker();
+
+Future selImagen(op) async {
+  var pickedFile;
+  if (op == 1) {
+    pickedFile = await picker.pickImage(source: ImageSource.camera);
+  } else {
+    pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  }
+
+  setState(() {
+    if (pickedFile != null) {
+      imagen = File(pickedFile.path);
+    } else {
+      print('No seleccionaste ninguna foto');
+    }
+  });
+}
+
+void setState(Null Function() param0) {}
+
+void opciones(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: const EdgeInsets.all(0),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    selImagen(1);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Text(
+                          'Tomar una foto',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.05),
+                        )),
+                        const Icon(Icons.photo_camera,
+                            color: Color.fromRGBO(242, 142, 144, 1))
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    selImagen(2);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Text(
+                          'Seleccionar una foto de la galeria',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.05),
+                        )),
+                        const Icon(Icons.photo_library,
+                            color: Color.fromRGBO(242, 142, 144, 1))
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(color: Colors.red),
+                    padding: const EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Text(
+                          'Cancelar',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      });
+}
+
 Widget Step3(PageController pageController, BuildContext context) {
+  File imagen;
   return Column(
     children: [
       Container(
@@ -736,7 +842,9 @@ Widget Step3(PageController pageController, BuildContext context) {
                   height: SizeResponsize.blockSizeVertical(10),
                   child: Center(
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          opciones(context);
+                        },
                         icon: Icon(
                           Icons.camera,
                           color: const Color.fromRGBO(242, 142, 144, 1),
@@ -748,6 +856,7 @@ Widget Step3(PageController pageController, BuildContext context) {
               SizedBox(
                 height: SizeResponsize.blockSizeVertical(25.0),
               ),
+              //imagen == null ? Center() : Image.file(imagen),
               SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
