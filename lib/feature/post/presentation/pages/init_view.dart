@@ -42,14 +42,14 @@ class _InitViewState extends State<InitView> {
         child: Column(
           children: [
             SizedBox(
-              height: SizeResponsize.blockSizeVertical(25),
+              height: SizeResponsize.blockSizeVertical(20),
             ),
             BounceInDown(
               animate: true,
               duration: const Duration(seconds: 2),
               from: 300,
               child: SizedBox(
-                height: SizeResponsize.blockSizeVertical(15),
+                height: SizeResponsize.blockSizeVertical(20),
                 child: Image.asset('assets/images/LogoFPY.png'),
               ),
             ),
@@ -59,7 +59,7 @@ class _InitViewState extends State<InitView> {
             BounceInUp(
               delay: const Duration(milliseconds: 1250),
               child: SizedBox(
-                height: SizeResponsize.blockSizeVertical(8),
+                height: SizeResponsize.blockSizeVertical(6),
                 child: Image.asset('assets/images/aez_logo.png'),
               ),
             ),

@@ -14,24 +14,22 @@ class LoginConsumer extends StatelessWidget {
     double sizeTextTittle = SizeResponsize.textSize(7.6388893);
     double sizeTextNormal = SizeResponsize.textSize(3.8194447);
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: DataColors.colorPinkBackground,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: DataColors.colorTransparent,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: SizeResponsize.textSize(25.462964)),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: SizeResponsize.blockSizeVertical(35),
               child: Image.asset('assets/images/logo_fpy.png'),
             ),
-          ),
-          Expanded(
-            flex: 5,
-            child: Container(
+            Container(
               width: SizeResponsize.sizeScreenWidth,
+              height: SizeResponsize.blockSizeVertical(55),
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
@@ -42,24 +40,26 @@ class LoginConsumer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
+                    width: SizeResponsize.safeBlockHorizontal(82),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(35.64815)),
+                        Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
                             'Iniciar Sesión',
-                            textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: sizeTextTittle,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(21.64352)),
+                        Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
-                            'Inicio de sesion para consumidores',
-                            style: TextStyle(fontWeight: FontWeight.w400, fontSize: sizeTextNormal),
+                            'Inicio de sesion para usuarios',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: sizeTextNormal),
                           ),
                         ),
                       ],
@@ -69,8 +69,8 @@ class LoginConsumer extends StatelessWidget {
                     width: SizeResponsize.safeBlockHorizontal(82),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(72.314813), bottom: SizeResponsize.textSize(2.546296444)),
+                        Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
                             'Email',
                             style: TextStyle(
@@ -93,8 +93,8 @@ class LoginConsumer extends StatelessWidget {
                     width: SizeResponsize.safeBlockHorizontal(82),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(62.12963323), bottom: SizeResponsize.textSize(2.546296444)),
+                        Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
                             'Contraseña',
                             style: TextStyle(
@@ -127,47 +127,44 @@ class LoginConsumer extends StatelessWidget {
                     textColor: DataColors.colorWhite,
                     sizeHorizontal: SizeResponsize.textSize(6.569444825),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(right: SizeResponsize.textSize(17.31481582)),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '¿Aún no tienes cuenta? ',
-                            style: TextStyle(
-                              color: DataColors.colorGreyText,
-                              fontSize: sizeTextNormal,
-                            ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '¿Aún no tienes cuenta? ',
+                          style: TextStyle(
+                            color: DataColors.colorGreyText,
+                            fontSize: sizeTextNormal,
                           ),
-                          WidgetSpan(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RegisterConsumer(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                '¡Regístrate ya!',
-                                style: TextStyle(
-                                  color: DataColors.colorBlueText,
-                                  fontSize: sizeTextNormal,
+                        ),
+                        WidgetSpan(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const RegisterConsumer(),
                                 ),
+                              );
+                            },
+                            child: Text(
+                              '¡Regístrate ya!',
+                              style: TextStyle(
+                                color: DataColors.colorBlueText,
+                                fontSize: sizeTextNormal,
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   )
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

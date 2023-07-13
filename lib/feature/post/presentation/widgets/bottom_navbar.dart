@@ -1,7 +1,11 @@
+import 'package:finder_pymes/feature/consumer/presentation/pages/profile.dart';
+import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
+import 'package:finder_pymes/feature/post/presentation/pages/notifications.dart';
+import 'package:finder_pymes/feature/post/presentation/pages/search.dart';
+import 'package:finder_pymes/feature/pymes/presentation/pages/registerPymes.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
-
 
 Widget customBottomNavigationBar(
     int optionSelectToColor, BuildContext context) {
@@ -11,51 +15,64 @@ Widget customBottomNavigationBar(
       height: SizeResponsize.blockSizeVertical(7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: DataColors.colorPinkSuave,
+        color: DataColors.colorWhite,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: const Offset(0, 3), // Posiciona la sombra
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              decoration: decorationOptionBarSelect(optionSelectToColor, 1),
-              height: 60,
-              child: IconButton(
-                onPressed: () {
-                  if (optionSelectToColor != 1) {}
-                },
-                icon: const Icon(
-                  Icons.home,
-                  color: DataColors.colorBlack,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                decoration: decorationOptionBarSelect(optionSelectToColor, 1),
+                height: 60,
+                child: IconButton(
+                  onPressed: () {
+                    if (optionSelectToColor != 1) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeFirst(),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.home,
+                    color: DataColors.colorBlack,
+                  ),
                 ),
               ),
             ),
           ),
           Expanded(
-            child: Container(
-              decoration: decorationOptionBarSelect(optionSelectToColor, 2),
-              height: 60,
-              child: IconButton(
-                onPressed: () {
-                  if (optionSelectToColor != 2) {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const HomePost(),
-                    //   ),
-                    // );
-                  }
-                },
-                icon: const Icon(
-                  Icons.menu,
-                  color: DataColors.colorBlack,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                decoration: decorationOptionBarSelect(optionSelectToColor, 2),
+                height: 60,
+                child: IconButton(
+                  onPressed: () {
+                    if (optionSelectToColor != 2) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterPymesPage(),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.business_center,
+                    color: DataColors.colorBlack,
+                  ),
                 ),
               ),
             ),
@@ -79,12 +96,12 @@ Widget customBottomNavigationBar(
                 child: IconButton(
                   onPressed: () {
                     if (optionSelectToColor != 3) {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const CreatePostView(),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SearchView(),
+                        ),
+                      );
                     }
                   },
                   icon: const Icon(
@@ -96,45 +113,51 @@ Widget customBottomNavigationBar(
             ),
           ),
           Expanded(
-            child: Container(
-              decoration: decorationOptionBarSelect(optionSelectToColor, 4),
-              height: 60,
-              child: IconButton(
-                onPressed: () {
-                  if (optionSelectToColor != 4) {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const NotificationPosts(),
-                    //   ),
-                    // );
-                  }
-                },
-                icon: const Icon(
-                  Icons.notifications,
-                  color: DataColors.colorBlack,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                decoration: decorationOptionBarSelect(optionSelectToColor, 4),
+                height: 60,
+                child: IconButton(
+                  onPressed: () {
+                    if (optionSelectToColor != 4) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NotificationsPost(),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.notifications,
+                    color: DataColors.colorBlack,
+                  ),
                 ),
               ),
             ),
           ),
           Expanded(
-            child: Container(
-              decoration: decorationOptionBarSelect(optionSelectToColor, 5),
-              height: 60,
-              child: IconButton(
-                onPressed: () {
-                  if (optionSelectToColor != 5) {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const ProfileView(),
-                    //   ),
-                    // );
-                  }
-                },
-                icon: const Icon(
-                  Icons.person,
-                  color: DataColors.colorBlack,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                decoration: decorationOptionBarSelect(optionSelectToColor, 5),
+                height: 60,
+                child: IconButton(
+                  onPressed: () {
+                    if (optionSelectToColor != 5) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileConsumer(),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.person,
+                    color: DataColors.colorBlack,
+                  ),
                 ),
               ),
             ),
@@ -150,7 +173,7 @@ BoxDecoration decorationOptionBarSelect(
   return BoxDecoration(
     borderRadius: BorderRadius.circular(15),
     color: optionSelectToColor == optionSelect
-        ? DataColors.colorWhite13Trasnparent
-        : const Color(0x00000000),
+        ? DataColors.colorPinkSuaveTransparent
+        : const Color.fromARGB(0, 255, 255, 255),
   );
 }
