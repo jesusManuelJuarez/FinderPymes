@@ -13,123 +13,152 @@ class LoginConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     double sizeTextTittle = SizeResponsize.textSize(7.6388893);
     double sizeTextNormal = SizeResponsize.textSize(3.8194447);
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final keyFormLogin = GlobalKey<FormState>();
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: DataColors.colorPinkBackground,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: DataColors.colorTransparent,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: SizeResponsize.textSize(25.462964)),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: SizeResponsize.blockSizeVertical(35),
               child: Image.asset('assets/images/logo_fpy.png'),
             ),
-          ),
-          Expanded(
-            flex: 5,
-            child: Container(
+            Container(
               width: SizeResponsize.sizeScreenWidth,
+              height: SizeResponsize.blockSizeVertical(55),
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50),
                   ),
                   color: DataColors.colorWhite),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(35.64815)),
-                          child: Text(
-                            'Iniciar Sesión',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: sizeTextTittle,
-                              fontWeight: FontWeight.bold,
+              child: Form(
+                key: keyFormLogin,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: SizeResponsize.safeBlockHorizontal(82),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Iniciar Sesión',
+                              style: TextStyle(
+                                fontSize: sizeTextTittle,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(21.64352)),
-                          child: Text(
-                            'Inicio de sesion para consumidores',
-                            style: TextStyle(fontWeight: FontWeight.w400, fontSize: sizeTextNormal),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: SizeResponsize.safeBlockHorizontal(82),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(72.314813), bottom: SizeResponsize.textSize(2.546296444)),
-                          child: Text(
-                            'Email',
-                            style: TextStyle(
-                              fontSize: sizeTextNormal,
-                              fontWeight: FontWeight.w500,
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Inicio de sesion para usuarios',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: sizeTextNormal),
                             ),
                           ),
-                        ),
-                        const CustomerTextFormField(
-                          label: 'name.lastname@example.com',
-                          iconSuffixIcon: Icon(Icons.email),
-                          borderColor: DataColors.colorGrey,
-                          typeKeyboard: TextInputType.emailAddress,
-                          obscureText: false,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: SizeResponsize.safeBlockHorizontal(82),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: SizeResponsize.textSize(62.12963323), bottom: SizeResponsize.textSize(2.546296444)),
-                          child: Text(
-                            'Contraseña',
-                            style: TextStyle(
-                              fontSize: sizeTextNormal,
-                              fontWeight: FontWeight.w500,
+                    SizedBox(
+                      width: SizeResponsize.safeBlockHorizontal(82),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Email',
+                              style: TextStyle(
+                                fontSize: sizeTextNormal,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                        const CustomerTextFormField(
-                          label: 'Contraseña',
-                          iconSuffixIcon: Icon(Icons.password),
-                          borderColor: DataColors.colorGrey,
-                          typeKeyboard: TextInputType.text,
-                          obscureText: true,
-                        ),
-                      ],
+                          CustomerTextFormField(
+                            label: 'name.lastname@example.com',
+                            controller: emailController,
+                            validator: (value) {
+                              String pattern =
+                                  r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$';
+                              RegExp regex = RegExp(pattern);
+                              if (value == null || value.isEmpty) {
+                                return 'Escriba un correo correcto';
+                              } else if (!regex.hasMatch(value)) {
+                                return 'Escriba un correo correcto';
+                              }
+                              return null;
+                            },
+                            iconSuffixIcon: const Icon(Icons.email),
+                            borderColor: DataColors.colorGrey,
+                            typeKeyboard: TextInputType.emailAddress,
+                            obscureText: false,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  CustomerElevateBottom(
-                    label: 'Iniciar Sesión',
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomeFirst(),
-                        ),
-                      );
-                    },
-                    backgroundColor: DataColors.colorBlueBottom,
-                    textColor: DataColors.colorWhite,
-                    sizeHorizontal: SizeResponsize.textSize(6.569444825),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: SizeResponsize.textSize(17.31481582)),
-                    child: RichText(
+                    SizedBox(
+                      width: SizeResponsize.safeBlockHorizontal(82),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Contraseña',
+                              style: TextStyle(
+                                fontSize: sizeTextNormal,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          CustomerTextFormField(
+                            label: 'Contraseña',
+                            controller: passwordController,
+                            validator: (value) {
+                              String pattern =
+                                  r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$';
+                              RegExp regex = RegExp(pattern);
+                              if (value == null || value.isEmpty) {
+                                return 'Escriba un contraseña correcta';
+                              } else if (!regex.hasMatch(value)) {
+                                return 'Escriba un contraseña correcta';
+                              }
+                              return null;
+                            },
+                            iconSuffixIcon: const Icon(Icons.password),
+                            borderColor: DataColors.colorGrey,
+                            typeKeyboard: TextInputType.text,
+                            obscureText: true,
+                          ),
+                        ],
+                      ),
+                    ),
+                    CustomerElevateBottom(
+                      label: 'Iniciar Sesión',
+                      onPressed: () {
+                        if (keyFormLogin.currentState!.validate()) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomeFirst(),
+                            ),
+                          );
+                        }
+                      },
+                      backgroundColor: DataColors.colorBlueBottom,
+                      textColor: DataColors.colorWhite,
+                      sizeHorizontal: SizeResponsize.textSize(6.569444825),
+                    ),
+                    RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
@@ -161,13 +190,13 @@ class LoginConsumer extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

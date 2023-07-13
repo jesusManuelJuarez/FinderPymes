@@ -1,5 +1,5 @@
 import 'package:finder_pymes/feature/consumer/presentation/pages/login.dart';
-import 'package:finder_pymes/feature/consumer/presentation/pages/option_register.dart';
+import 'package:finder_pymes/feature/consumer/presentation/pages/register.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +70,7 @@ class FirstViewPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const OptionRegister(),
+                          builder: (context) => const RegisterConsumer(),
                         ),
                       );
                     },
