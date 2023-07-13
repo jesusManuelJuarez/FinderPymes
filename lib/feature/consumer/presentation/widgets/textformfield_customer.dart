@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomerTextFormField extends StatelessWidget {
   final String label;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
   final Icon iconSuffixIcon;
   final Color borderColor;
   final TextInputType typeKeyboard;
@@ -9,15 +11,18 @@ class CustomerTextFormField extends StatelessWidget {
   const CustomerTextFormField({
     super.key,
     required this.label,
+    this.controller,
+    this.validator,
     required this.iconSuffixIcon,
     required this.borderColor,
     required this.typeKeyboard,
-    required this.obscureText
+    required this.obscureText,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: label,
         suffixIcon: iconSuffixIcon,
@@ -33,7 +38,7 @@ class CustomerTextFormField extends StatelessWidget {
       ),
       keyboardType: typeKeyboard,
       obscureText: obscureText,
-      validator: (value) {},
+      validator: validator,
     );
   }
 }
