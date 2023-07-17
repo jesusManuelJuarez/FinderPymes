@@ -13,6 +13,10 @@ class DatosEmpresaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isKeyboardPresent(BuildContext context) {
+      return !(MediaQuery.of(context).viewInsets.bottom == 0.0);
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -25,53 +29,68 @@ class DatosEmpresaPage extends StatelessWidget {
           onPressed: () {},
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: List.generate(
-                  4,
-                  (index) => Stepper(
-                    currentIndex:
-                        Provider.of<StepperState>(context).currentIndex,
-                    index: index,
-                    isLast: index == 3,
-                    onTap: () {
-                      Provider.of<StepperState>(context, listen: false)
-                          .setIndex(index);
-                      _pageController.jumpToPage(index);
-                    },
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewportConstraints) {
+        bool scrollable =
+            MediaQuery.of(context).size.height < viewportConstraints.maxHeight;
+        bool isKeyboard = isKeyboardPresent(context);
+        return SingleChildScrollView(
+          physics: scrollable || isKeyboard
+              ? const AlwaysScrollableScrollPhysics()
+              : const NeverScrollableScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: viewportConstraints.maxHeight,
+            ),
+            child: IntrinsicHeight(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: List.generate(
+                        4,
+                        (index) => Stepper(
+                          currentIndex:
+                              Provider.of<StepperState>(context).currentIndex,
+                          index: index,
+                          isLast: index == 3,
+                          onTap: () {
+                            Provider.of<StepperState>(context, listen: false)
+                                .setIndex(index);
+                            _pageController.jumpToPage(index);
+                          },
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    height: SizeResponsize.sizeScreenHeigth,
+                    child: PageView.builder(
+                      controller: _pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        switch (index) {
+                          case 0:
+                            return Step1(_pageController, context);
+                          case 1:
+                            return Step2(_pageController, context);
+                          case 2:
+                            return Step3(_pageController, context);
+                          case 3:
+                            return Step4(_pageController, context);
+                        }
+                        return Container();
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(
-              height: SizeResponsize.sizeScreenHeigth,
-              child: PageView.builder(
-                controller: _pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  switch (index) {
-                    case 0:
-                      return Step1(_pageController, context);
-                    case 1:
-                      return Step2(_pageController, context);
-                    case 2:
-                      return Step3(_pageController, context);
-                    case 3:
-                      return Step4(_pageController, context);
-                  }
-                  return Container();
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }),
     );
   }
 }
@@ -905,11 +924,236 @@ Widget Step3(PageController pageController, BuildContext context) {
 }
 
 Widget Step4(PageController pageController, BuildContext context) {
-  return Container(
-    height: 35.0,
-    width: 35.0,
-    decoration: const BoxDecoration(
-      color: Color.fromARGB(255, 175, 35, 35),
-    ),
+  return Column(
+    children: [
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+        height: SizeResponsize.safeBlockVertical(75.0),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Conoce nuestro planes',
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.06,
+                  color: const Color.fromRGBO(95, 95, 95, 1)),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              height: SizeResponsize.safeBlockVertical(30.0),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.6),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 0),
+                    )
+                  ]),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: SizeResponsize.safeBlockHorizontal(45)),
+                    width: double.infinity,
+                    height: 20,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Gratuito',
+                          style:
+                              TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
+                        ),
+                        Spacer(),
+                        Text(
+                          'Premium',
+                          style: TextStyle(
+                            color: Color.fromRGBO(241, 135, 137, 1),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 1,
+                    width: SizeResponsize.safeBlockHorizontal(90),
+                    color: const Color.fromRGBO(95, 95, 95, 1),
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            child: const Text('Carga ilimitada de datos'),
+                          ),
+                          Container(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    SizeResponsize.safeBlockHorizontal(4)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.check,
+                                  color: Color.fromRGBO(241, 135, 137, 1),
+                                ),
+                                Icon(
+                                  Icons.close,
+                                  color: Color.fromRGBO(95, 95, 95, 1),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            child: const Text('Destacar en tendencias'),
+                          ),
+                          Container(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    SizeResponsize.safeBlockHorizontal(4)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.check,
+                                  color: Color.fromRGBO(241, 135, 137, 1),
+                                ),
+                                Icon(
+                                  Icons.close,
+                                  color: Color.fromRGBO(95, 95, 95, 1),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            child: const Text('Reporte de visitas'),
+                          ),
+                          Container(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    SizeResponsize.safeBlockHorizontal(4)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.check,
+                                  color: Color.fromRGBO(241, 135, 137, 1),
+                                ),
+                                Icon(
+                                  Icons.close,
+                                  color: Color.fromRGBO(95, 95, 95, 1),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            child: const Text('Cobros a través de plataforma'),
+                          ),
+                          Container(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    SizeResponsize.safeBlockHorizontal(4)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.check,
+                                  color: Color.fromRGBO(241, 135, 137, 1),
+                                ),
+                                Icon(
+                                  Icons.close,
+                                  color: Color.fromRGBO(95, 95, 95, 1),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            child: const Text('Citas a través de plataforma'),
+                          ),
+                          Container(
+                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    SizeResponsize.safeBlockHorizontal(4)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.check,
+                                  color: Color.fromRGBO(241, 135, 137, 1),
+                                ),
+                                Icon(
+                                  Icons.close,
+                                  color: Color.fromRGBO(95, 95, 95, 1),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                    const Color.fromRGBO(95, 95, 95, 1)),
+                minimumSize: MaterialStateProperty.all<Size>(Size(
+                    SizeResponsize.blockSizeHorizontal(100),
+                    50)), // Tamaño mínimo
+              ),
+              onPressed: () {
+                var stepperState =
+                    Provider.of<StepperState>(context, listen: false);
+                stepperState.setIndex(stepperState.currentIndex - 1);
+                pageController.animateToPage(
+                  stepperState.currentIndex,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                );
+              },
+              child: const Text(
+                'Atrás',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
   );
 }

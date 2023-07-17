@@ -30,10 +30,11 @@ class RegisterPymesPage extends StatelessWidget {
         child: Center(
           child: Container(
             padding: const EdgeInsets.all(30),
-            height: SizeResponsize.blockSizeVertical(40),
+            height: SizeResponsize.blockSizeVertical(60),
             width: SizeResponsize.sizeScreenWidth,
             decoration: BoxDecoration(
-                color: Color.fromARGB(214, 255, 255, 255), borderRadius: BorderRadius.circular(30)),
+                color: const Color.fromARGB(214, 255, 255, 255),
+                borderRadius: BorderRadius.circular(30)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
