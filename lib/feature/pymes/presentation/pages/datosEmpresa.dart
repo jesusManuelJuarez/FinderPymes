@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables
 import 'package:dotted_border/dotted_border.dart';
+import 'package:finder_pymes/feature/pymes/presentation/widgets/step1.dart';
+import 'package:finder_pymes/feature/pymes/presentation/widgets/stepper2.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -257,452 +259,7 @@ class Stepper extends StatelessWidget {
   }
 }
 
-Widget Step1(PageController pageController, BuildContext context) {
-  return Column(
-    children: [
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        height: SizeResponsize.safeBlockVertical(75.0),
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 255, 255, 255),
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 4,
-                blurRadius: 4,
-                offset: const Offset(0, 3),
-              )
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(
-                height: 5,
-              ),
-              RichText(
-                  text: const TextSpan(children: [
-                TextSpan(
-                  text: 'Nombre de la empresa ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                TextSpan(
-                    text: '*',
-                    style: TextStyle(
-                        color: Color.fromRGBO(242, 142, 144, 1),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold))
-              ])),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "Ingrese nombre de la empresa",
-                  hintStyle:
-                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado normal.
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado enfocado.
-                  ),
-                ),
-              ),
-              RichText(
-                  text: const TextSpan(children: [
-                TextSpan(
-                  text: 'Descripción de la empresa ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                TextSpan(
-                    text: '*',
-                    style: TextStyle(
-                        color: Color.fromRGBO(242, 142, 144, 1),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold))
-              ])),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "Escribe una breve descripción de tu empresa",
-                  hintStyle:
-                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado normal.
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado enfocado.
-                  ),
-                ),
-              ),
-              RichText(
-                  text: const TextSpan(children: [
-                TextSpan(
-                  text: 'Tipo de industria ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                TextSpan(
-                    text: '*',
-                    style: TextStyle(
-                        color: Color.fromRGBO(242, 142, 144, 1),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold))
-              ])),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "Indique la actividad principal de su empresa",
-                  hintStyle:
-                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado normal.
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado enfocado.
-                  ),
-                ),
-              ),
-              RichText(
-                  text: const TextSpan(children: [
-                TextSpan(
-                  text: 'Sitio web ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                TextSpan(
-                    text: '(opcional)',
-                    style: TextStyle(
-                        color: Color.fromRGBO(95, 95, 95, 1),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold))
-              ])),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "Pon aqui el link de tu sitio web o red social",
-                  hintStyle:
-                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado normal.
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado enfocado.
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () {
-                    // aquí puedes manejar la acción de presionar el botón
-                  },
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.transparent, // fondo transparente
-                    side: const BorderSide(
-                        color: Color.fromRGBO(
-                            242, 142, 144, 1)), // bordes de color
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Datos de contacto',
-                        style:
-                            TextStyle(color: Color.fromRGBO(242, 142, 144, 1)),
-                      ),
-                      Icon(Icons.chevron_right,
-                          color: Color.fromRGBO(
-                              242, 142, 144, 1)), // icono Chevron-Right
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        const Color.fromRGBO(4, 104, 252, 1)),
-                  ),
-                  onPressed: () {
-                    var stepperState =
-                        Provider.of<StepperState>(context, listen: false);
-                    stepperState.setIndex(stepperState.currentIndex + 1);
-                    pageController.animateToPage(
-                      stepperState.currentIndex,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeIn,
-                    );
-                  },
-                  child: const Text(
-                    'Continuar',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget Step2(PageController pageController, BuildContext context) {
-  return Column(
-    children: [
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        height: SizeResponsize.safeBlockVertical(75.0),
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 255, 255, 255),
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 4,
-                blurRadius: 4,
-                offset: const Offset(0, 3),
-              )
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(
-                height: 5,
-              ),
-              RichText(
-                  text: const TextSpan(children: [
-                TextSpan(
-                  text: 'RFC ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                TextSpan(
-                    text: '(opcional)',
-                    style: TextStyle(
-                        color: Color.fromRGBO(95, 95, 95, 1),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold))
-              ])),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "Ingrese su RFC con homoclave ",
-                  hintStyle:
-                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado normal.
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado enfocado.
-                  ),
-                ),
-              ),
-              RichText(
-                  text: const TextSpan(children: [
-                TextSpan(
-                  text: 'Regimen fiscal ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                TextSpan(
-                    text: '(opcional)',
-                    style: TextStyle(
-                        color: Color.fromRGBO(95, 95, 95, 1),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold))
-              ])),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "Ingrese su regimen fiscal",
-                  hintStyle:
-                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado normal.
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado enfocado.
-                  ),
-                ),
-              ),
-              RichText(
-                  text: const TextSpan(children: [
-                TextSpan(
-                  text: 'Domicilio fiscal ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                TextSpan(
-                    text: '(opcional)',
-                    style: TextStyle(
-                        color: Color.fromRGBO(95, 95, 95, 1),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold))
-              ])),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "En caso de tener, ingrese su domicilio fiscal",
-                  hintStyle:
-                      const TextStyle(color: Color.fromRGBO(95, 95, 95, 1)),
-                  errorStyle: const TextStyle(color: Colors.redAccent),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado normal.
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(242, 142, 144,
-                            1)), // Color del borde en estado enfocado.
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: SizeResponsize.blockSizeVertical(20.0),
-              ),
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(95, 95, 95, 1)),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(
-                            SizeResponsize.blockSizeHorizontal(40),
-                            50)), // Tamaño mínimo
-                      ),
-                      onPressed: () {
-                        var stepperState =
-                            Provider.of<StepperState>(context, listen: false);
-                        stepperState.setIndex(stepperState.currentIndex - 1);
-                        pageController.animateToPage(
-                          stepperState.currentIndex,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeIn,
-                        );
-                      },
-                      child: const Text(
-                        'Atrás',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(4, 104, 252, 1)),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(
-                            SizeResponsize.blockSizeHorizontal(40),
-                            50)), // Tamaño mínimo
-                      ),
-                      onPressed: () {
-                        var stepperState =
-                            Provider.of<StepperState>(context, listen: false);
-                        stepperState.setIndex(stepperState.currentIndex + 1);
-                        pageController.animateToPage(
-                          stepperState.currentIndex,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeIn,
-                        );
-                      },
-                      child: const Text(
-                        'Continuar',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    ],
-  );
-}
-
-void opciones(BuildContext context) {
+void opciones(BuildContext context, ImagePickerProvider imagePicker) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -713,8 +270,7 @@ void opciones(BuildContext context) {
               children: [
                 InkWell(
                   onTap: () {
-                    Provider.of<ImagePickerProvider>(context, listen: false)
-                        .selImagen(1);
+                    imagePicker.selImagen(1);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(20),
@@ -735,8 +291,7 @@ void opciones(BuildContext context) {
                 ),
                 InkWell(
                   onTap: () {
-                    Provider.of<ImagePickerProvider>(context, listen: false)
-                        .selImagen(2);
+                    imagePicker.selImagen(2);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(20),
@@ -811,9 +366,6 @@ Widget Step3(PageController pageController, BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 5,
-                  ),
                   RichText(
                       text: TextSpan(children: [
                     TextSpan(
@@ -833,14 +385,17 @@ Widget Step3(PageController pageController, BuildContext context) {
                   ])),
                   DottedBorder(
                     color: const Color.fromRGBO(95, 95, 95, 1),
-                    strokeWidth: 2,
+                    strokeWidth: 1,
                     child: SizedBox(
                       width: SizeResponsize.blockSizeHorizontal(100),
                       height: SizeResponsize.blockSizeVertical(10),
                       child: Center(
                         child: IconButton(
                             onPressed: () {
-                              opciones(context);
+                              opciones(
+                                  context,
+                                  Provider.of<ImagePickerProvider>(context,
+                                      listen: false));
                             },
                             icon: Icon(
                               Icons.camera,
@@ -850,12 +405,12 @@ Widget Step3(PageController pageController, BuildContext context) {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: SizeResponsize.blockSizeVertical(25.0),
-                  ),
                   imagePicker.imagen != null
                       ? Image.file(imagePicker.imagen!)
-                      : const Center(),
+                      : SizedBox(
+                          width: SizeResponsize.safeBlockHorizontal(25),
+                          height: SizeResponsize.blockSizeHorizontal(5),
+                        ),
                   SizedBox(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -923,11 +478,157 @@ Widget Step3(PageController pageController, BuildContext context) {
   );
 }
 
-Widget Step4(PageController pageController, BuildContext context) {
+Widget Step1(PageController pageController, BuildContext context) {
   return Column(
     children: [
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        height: SizeResponsize.safeBlockVertical(75.0),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: const Offset(0, 3),
+              )
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Stepper1(),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        const Color.fromRGBO(4, 104, 252, 1)),
+                  ),
+                  onPressed: () {
+                    var stepperState =
+                        Provider.of<StepperState>(context, listen: false);
+                    stepperState.setIndex(stepperState.currentIndex + 1);
+                    pageController.animateToPage(
+                      stepperState.currentIndex,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                  child: const Text(
+                    'Continuar',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget Step2(PageController pageController, BuildContext context) {
+  return Column(
+    children: [
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        height: SizeResponsize.safeBlockVertical(75.0),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 4,
+                blurRadius: 4,
+                offset: const Offset(0, 3),
+              )
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Stepper2(),
+              SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(95, 95, 95, 1)),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            SizeResponsize.blockSizeHorizontal(40),
+                            50)), // Tamaño mínimo
+                      ),
+                      onPressed: () {
+                        var stepperState =
+                            Provider.of<StepperState>(context, listen: false);
+                        stepperState.setIndex(stepperState.currentIndex - 1);
+                        pageController.animateToPage(
+                          stepperState.currentIndex,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: const Text(
+                        'Atrás',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromRGBO(4, 104, 252, 1)),
+                        minimumSize: MaterialStateProperty.all<Size>(Size(
+                            SizeResponsize.blockSizeHorizontal(40),
+                            50)), // Tamaño mínimo
+                      ),
+                      onPressed: () {
+                        var stepperState =
+                            Provider.of<StepperState>(context, listen: false);
+                        stepperState.setIndex(stepperState.currentIndex + 1);
+                        pageController.animateToPage(
+                          stepperState.currentIndex,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: const Text(
+                        'Continuar',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget Step4(PageController pageController, BuildContext context) {
+  return Column(
+    children: [
+      Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: SizeResponsize.safeBlockHorizontal(5),
+        ),
         height: SizeResponsize.safeBlockVertical(75.0),
         width: double.infinity,
         child: Column(
@@ -942,8 +643,7 @@ Widget Step4(PageController pageController, BuildContext context) {
             ),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              height: SizeResponsize.safeBlockVertical(30.0),
+              height: SizeResponsize.safeBlockVertical(24.5),
               width: double.infinity,
               decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 255, 255, 255),
@@ -960,7 +660,7 @@ Widget Step4(PageController pageController, BuildContext context) {
                 children: [
                   Container(
                     padding: EdgeInsets.only(
-                        left: SizeResponsize.safeBlockHorizontal(45)),
+                        left: SizeResponsize.safeBlockHorizontal(50)),
                     width: double.infinity,
                     height: 20,
                     child: const Row(
@@ -991,11 +691,17 @@ Widget Step4(PageController pageController, BuildContext context) {
                       Row(
                         children: [
                           SizedBox(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
-                            child: const Text('Carga ilimitada de datos'),
+                            width: SizeResponsize.safeBlockHorizontal(50),
+                            child: Text(
+                              'Carga ilimitada de datos',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.033,
+                              ),
+                            ),
                           ),
                           Container(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            width: SizeResponsize.safeBlockHorizontal(35),
                             padding: EdgeInsets.symmetric(
                                 horizontal:
                                     SizeResponsize.safeBlockHorizontal(4)),
@@ -1018,11 +724,17 @@ Widget Step4(PageController pageController, BuildContext context) {
                       Row(
                         children: [
                           SizedBox(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
-                            child: const Text('Destacar en tendencias'),
+                            width: SizeResponsize.safeBlockHorizontal(50),
+                            child: Text(
+                              'Destacar en tendencias',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.033,
+                              ),
+                            ),
                           ),
                           Container(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            width: SizeResponsize.safeBlockHorizontal(35),
                             padding: EdgeInsets.symmetric(
                                 horizontal:
                                     SizeResponsize.safeBlockHorizontal(4)),
@@ -1045,11 +757,17 @@ Widget Step4(PageController pageController, BuildContext context) {
                       Row(
                         children: [
                           SizedBox(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
-                            child: const Text('Reporte de visitas'),
+                            width: SizeResponsize.safeBlockHorizontal(50),
+                            child: Text(
+                              'Reporte de visitas',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.033,
+                              ),
+                            ),
                           ),
                           Container(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            width: SizeResponsize.safeBlockHorizontal(35),
                             padding: EdgeInsets.symmetric(
                                 horizontal:
                                     SizeResponsize.safeBlockHorizontal(4)),
@@ -1072,11 +790,17 @@ Widget Step4(PageController pageController, BuildContext context) {
                       Row(
                         children: [
                           SizedBox(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
-                            child: const Text('Cobros a través de plataforma'),
+                            width: SizeResponsize.safeBlockHorizontal(50),
+                            child: Text(
+                              'Cobros a través de plataforma',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.033,
+                              ),
+                            ),
                           ),
                           Container(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            width: SizeResponsize.safeBlockHorizontal(35),
                             padding: EdgeInsets.symmetric(
                                 horizontal:
                                     SizeResponsize.safeBlockHorizontal(4)),
@@ -1099,11 +823,17 @@ Widget Step4(PageController pageController, BuildContext context) {
                       Row(
                         children: [
                           SizedBox(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
-                            child: const Text('Citas a través de plataforma'),
+                            width: SizeResponsize.safeBlockHorizontal(50),
+                            child: Text(
+                              'Citas a través de plataforma',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.033,
+                              ),
+                            ),
                           ),
                           Container(
-                            width: SizeResponsize.safeBlockHorizontal(42.5),
+                            width: SizeResponsize.safeBlockHorizontal(35),
                             padding: EdgeInsets.symmetric(
                                 horizontal:
                                     SizeResponsize.safeBlockHorizontal(4)),
@@ -1125,6 +855,299 @@ Widget Step4(PageController pageController, BuildContext context) {
                       ),
                     ],
                   )
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              height: SizeResponsize.safeBlockVertical(11),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.6),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 0),
+                    )
+                  ]),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: SizeResponsize.safeBlockHorizontal(55),
+                    height: SizeResponsize.safeBlockVertical(100),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '12 MESES',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.03),
+                        ),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                            text: '179.58 MXN*',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' /mes',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold))
+                        ])),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                            text: ' 2.155 MXN*',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.03,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' cada ',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold)),
+                          TextSpan(
+                              text: '12 ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold)),
+                          TextSpan(
+                              text: 'meses',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold))
+                        ])),
+                        Text(
+                          ' Puede aplicarse IVA, o impuesto locales',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.02,
+                              color: const Color.fromRGBO(95, 95, 95, 1)),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: SizeResponsize.safeBlockHorizontal(30),
+                    height: SizeResponsize.safeBlockVertical(100),
+                    child: Center(
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(242, 142, 144, 1))),
+                        onPressed: () {},
+                        child: const Text('Suscribirse'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              height: SizeResponsize.safeBlockVertical(11),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.6),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 0),
+                    )
+                  ]),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: SizeResponsize.safeBlockHorizontal(55),
+                    height: SizeResponsize.safeBlockVertical(100),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '1 MES ',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.03),
+                        ),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                            text: '299.99 MXN*',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' /mes',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold))
+                        ])),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                            text: '299.99 MXN*',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.03,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' cada ',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold)),
+                          TextSpan(
+                              text: 'mes ',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold)),
+                        ])),
+                        Text(
+                          ' Puede aplicarse IVA, o impuesto locales',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.02,
+                              color: const Color.fromRGBO(95, 95, 95, 1)),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: SizeResponsize.safeBlockHorizontal(30),
+                    height: SizeResponsize.safeBlockVertical(100),
+                    child: Center(
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(242, 142, 144, 1))),
+                        onPressed: () {},
+                        child: const Text('Suscribirse'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              height: SizeResponsize.safeBlockVertical(11),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.6),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 0),
+                    )
+                  ]),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: SizeResponsize.safeBlockHorizontal(55),
+                    height: SizeResponsize.safeBlockVertical(100),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'GRATUITO',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.03),
+                        ),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                            text: '0 MXN*',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' /mes',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold))
+                        ])),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                            text: '0 MXN*',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.03,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' cada mes',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(95, 95, 95, 1),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  fontWeight: FontWeight.bold)),
+                        ])),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: SizeResponsize.safeBlockHorizontal(30),
+                    height: SizeResponsize.safeBlockVertical(100),
+                    child: Center(
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(95, 95, 95, 1))),
+                        onPressed: () {},
+                        child: const Text('Suscribirse'),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
