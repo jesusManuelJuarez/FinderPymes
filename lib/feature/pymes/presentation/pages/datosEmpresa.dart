@@ -484,7 +484,6 @@ Widget Step1(PageController pageController, BuildContext context) {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         padding: const EdgeInsets.symmetric(vertical: 10),
-        height: SizeResponsize.safeBlockVertical(75.0),
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -500,8 +499,6 @@ Widget Step1(PageController pageController, BuildContext context) {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Stepper1(),
               SizedBox(

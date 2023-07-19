@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeResponsize(context);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'FinderPymes',
       theme: ThemeData(
         primarySwatch: Colors.blue,
