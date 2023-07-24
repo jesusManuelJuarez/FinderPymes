@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_import
 
 import 'package:finder_pymes/feature/pymes/presentation/pages/datosEmpresa.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
@@ -57,7 +57,7 @@ class RegisterPymesPage extends StatelessWidget {
                 ),
                 //SizedBox(height: SizeResponsize.blockSizeHorizontal(2)),
                 ElevatedButton(
-                  onPressed: () => Navigator.push(
+                  onPressed: /* () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => MultiProvider(
@@ -72,7 +72,8 @@ class RegisterPymesPage extends StatelessWidget {
                         child: DatosEmpresaPage(),
                       ),
                     ),
-                  ),
+                  ), */
+                      () {},
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(60),
                     backgroundColor: const Color.fromRGBO(4, 104, 252, 1),

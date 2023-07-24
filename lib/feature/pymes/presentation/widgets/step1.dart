@@ -1,4 +1,4 @@
-import 'package:finder_pymes/feature/pymes/presentation/widgets/bottomModal.dart';
+import 'package:finder_pymes/feature/pymes/presentation/widgets/bottom_modal.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../settings/size_responsive.dart';

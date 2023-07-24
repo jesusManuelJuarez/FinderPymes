@@ -1,21 +1,27 @@
+import 'package:finder_pymes/feature/consumer/domain/entities/consumer_entity.dart';
+import 'package:finder_pymes/feature/consumer/presentation/pages/profile.dart';
 import 'package:finder_pymes/feature/consumer/presentation/pages/register.dart';
+import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/textformfield_customer.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginConsumer extends StatelessWidget {
   const LoginConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
     double sizeTextTittle = SizeResponsize.textSize(7.6388893);
     double sizeTextNormal = SizeResponsize.textSize(3.8194447);
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final keyFormLogin = GlobalKey<FormState>();
+    ConsumerData consumerToLogged;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: DataColors.colorPinkBackground,
@@ -144,14 +150,32 @@ class LoginConsumer extends StatelessWidget {
                     ),
                     CustomerElevateBottom(
                       label: 'Iniciar Sesión',
-                      onPressed: () {
+                      onPressed: () async {
                         if (keyFormLogin.currentState!.validate()) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomeFirst(),
-                            ),
+                          consumerToLogged = ConsumerData(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            id: 0,
+                            idPlantFP: 0,
+                            name: '',
                           );
+                          try {
+                            await consumerProvider
+                                .loginConsumer(consumerToLogged);
+                            // ignore: use_build_context_synchronously
+                            showDialogWelcome(context, consumerProvider);
+                          } catch (e) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Error'),
+                                  content: Text(
+                                      'Ocurrió un error durante el inicio de sesión: $e'),
+                                );
+                              },
+                            );
+                          }
                         }
                       },
                       backgroundColor: DataColors.colorBlueBottom,
@@ -198,6 +222,52 @@ class LoginConsumer extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<dynamic> showDialogWelcome(
+      BuildContext context, ConsumerProvider consumerProvider) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(const Duration(seconds: 3), () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ProfileConsumer(),
+            ),
+          );
+        });
+        return AlertDialog(
+          title: const Text(
+            'Bienvenido',
+            style: TextStyle(
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
+          ),
+          content: Text(
+            consumerProvider.loggedInConsumer!.name,
+            style: const TextStyle(
+              fontSize: 18,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text(
+                'Cerrar',
+                style: TextStyle(
+                  color: Colors.blue,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,0 +1,12 @@
+import 'package:finder_pymes/feature/consumer/domain/entities/consumer_entity.dart';
+import 'package:finder_pymes/feature/consumer/domain/repositories/consumer_repository.dart';
+
+class LoginConsumerUsecase {
+  final ConsumerRepository consumerRepository;
+
+  LoginConsumerUsecase({required this.consumerRepository});
+
+  Future<ConsumerData> execute(ConsumerData consumer) async{
+    return await consumerRepository.loginConsumer(consumer);
+  }
+}

@@ -1,4 +1,6 @@
 import 'package:finder_pymes/feature/consumer/presentation/pages/first_view.dart';
+import 'package:finder_pymes/feature/consumer/presentation/pages/profile.dart';
+import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/notifications.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/search.dart';
@@ -6,9 +8,11 @@ import 'package:finder_pymes/feature/pymes/presentation/pages/registerPymes.dart
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Widget customBottomNavigationBar(
     int optionSelectToColor, BuildContext context) {
+      ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -146,10 +150,15 @@ Widget customBottomNavigationBar(
                 child: IconButton(
                   onPressed: () {
                     if (optionSelectToColor != 5) {
-                      Navigator.push(
+                      consumerProvider.loggedInConsumer == null ? Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const FirstViewPage(),
+                        ),
+                      ) : Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileConsumer(),
                         ),
                       );
                     }

@@ -1,9 +1,40 @@
+import 'package:finder_pymes/feature/consumer/data/datasource/consumer_remote_datasource.dart';
+import 'package:finder_pymes/feature/consumer/data/repository/consumer_repository_imp.dart';
+import 'package:finder_pymes/feature/consumer/domain/usecases/get_consumer_usecase.dart';
+import 'package:finder_pymes/feature/consumer/domain/usecases/login_consumer_usecase.dart';
+import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/init_view.dart';
+import 'package:finder_pymes/feature/pruebas.dart';
+import 'package:finder_pymes/feature/pymes/presentation/pages/image_picker_provider.dart';
+import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  final consumerRemoteDataSource = ConsumerRemoteDataSoucerImp();
+  final consumerRepository =
+      ConsumerRepositoryImp(consumerRemoteDataSource: consumerRemoteDataSource);
+  final getConsumerUsecase =
+      GetConsumerUsecase(consumerRepository: consumerRepository);
+
+  final loginConsumerUsecase =
+      LoginConsumerUsecase(consumerRepository: consumerRepository);
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => ConsumerProvider(getConsumerUsecase, loginConsumerUsecase),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => StepperState(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => ImagePickerProvider(),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,6 +49,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // home: const PaginaPruebas(),
       home: const InitView(),
     );
   }
