@@ -1,4 +1,4 @@
-package com.example.finder_pymes
+package com.aez.finderpymes
 
 import io.flutter.embedding.android.FlutterActivity
 
