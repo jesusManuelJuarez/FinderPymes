@@ -1,9 +1,11 @@
 import 'package:finder_pymes/feature/consumer/presentation/pages/login.dart';
 import 'package:finder_pymes/feature/consumer/presentation/pages/register.dart';
+import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
+import 'package:provider/provider.dart';
 
 class FirstViewPage extends StatelessWidget {
   const FirstViewPage({super.key});
@@ -11,6 +13,7 @@ class FirstViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double sizeText = SizeResponsize.textSize(15);
+    ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
 
     return Scaffold(
       backgroundColor: DataColors.colorPinkBackground,
@@ -35,7 +38,8 @@ class FirstViewPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: SizeResponsize.textSize(15)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: SizeResponsize.textSize(15)),
                   child: Text(
                     'Descubre promociones exclusivas y apoya a las PYMES de tu localidad con FinderPymes. \n ¡Conéctate, ahorra y disfruta!',
                     style: TextStyle(
@@ -81,6 +85,8 @@ class FirstViewPage extends StatelessWidget {
                   CustomerElevateBottom(
                     label: 'Inicia Sesión',
                     onPressed: () {
+                      consumerProvider.getConsumers();
+                      print(consumerProvider.consumers!.length);
                       Navigator.push(
                         context,
                         MaterialPageRoute(

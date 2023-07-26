@@ -217,63 +217,63 @@ class RegisterConsumer extends StatelessWidget {
                                       urlPhoto = await consumerProvider
                                           .uploadImage(image);
                                     }
-                                    // String newConsumerWasCreated =
-                                    //     await consumerProvider.registerConsumer(
-                                    //         nameController.text,
-                                    //         emailController.text,
-                                    //         passwordController.text,
-                                    //         urlPhoto);
+                                    String newConsumerWasCreated =
+                                        await consumerProvider.registerConsumer(
+                                            nameController.text,
+                                            emailController.text,
+                                            passwordController.text,
+                                            urlPhoto);
 
-                                    // if (newConsumerWasCreated ==
-                                    //     'REGISTRO EXITOSO') {
-                                    //   showDialog(
-                                    //     context: context,
-                                    //     builder: (BuildContext context) {
-                                    //       Future.delayed(
-                                    //           const Duration(seconds: 4), () {
-                                    //         Navigator.of(context).pop();
-                                    //       });
-                                    //       return const AlertDialog(
-                                    //         title: Row(
-                                    //           children: [
-                                    //             Icon(Icons.check_circle,
-                                    //                 color: Colors.green),
-                                    //             SizedBox(width: 10),
-                                    //             Text('Éxito',
-                                    //                 style: TextStyle(
-                                    //                     color: Colors.green)),
-                                    //           ],
-                                    //         ),
-                                    //         content: Text(
-                                    //             'Usuario creado correctamente.'),
-                                    //       );
-                                    //     },
-                                    //   );
-                                    // } else {
-                                    //   showDialog(
-                                    //     context: context,
-                                    //     builder: (BuildContext context) {
-                                    //       Future.delayed(
-                                    //           const Duration(seconds: 4), () {
-                                    //         Navigator.of(context).pop();
-                                    //       });
-                                    //       return const AlertDialog(
-                                    //         title: Row(
-                                    //           children: [
-                                    //             Icon(Icons.error,
-                                    //                 color: Colors.red),
-                                    //             SizedBox(width: 10),
-                                    //             Text('Error',
-                                    //                 style: TextStyle(
-                                    //                     color: Colors.red)),
-                                    //           ],
-                                    //         ),
-                                    //         content: Text(
-                                    //             'Hubo un error al crear el usuario.'),
-                                    //       );
-                                    //     },
-                                    //   );
-                                    // }
+                                    if (newConsumerWasCreated ==
+                                        'REGISTRO EXITOSO') {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          Future.delayed(
+                                              const Duration(seconds: 4), () {
+                                            Navigator.of(context).pop();
+                                          });
+                                          return const AlertDialog(
+                                            title: Row(
+                                              children: [
+                                                Icon(Icons.check_circle,
+                                                    color: Colors.green),
+                                                SizedBox(width: 10),
+                                                Text('Éxito',
+                                                    style: TextStyle(
+                                                        color: Colors.green)),
+                                              ],
+                                            ),
+                                            content: Text(
+                                                'Usuario creado correctamente.'),
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          Future.delayed(
+                                              const Duration(seconds: 4), () {
+                                            Navigator.of(context).pop();
+                                          });
+                                          return const AlertDialog(
+                                            title: Row(
+                                              children: [
+                                                Icon(Icons.error,
+                                                    color: Colors.red),
+                                                SizedBox(width: 10),
+                                                Text('Error',
+                                                    style: TextStyle(
+                                                        color: Colors.red)),
+                                              ],
+                                            ),
+                                            content: Text(
+                                                'Hubo un error al crear el usuario.'),
+                                          );
+                                        },
+                                      );
+                                    }
                                   },
                                 ),
                               ],

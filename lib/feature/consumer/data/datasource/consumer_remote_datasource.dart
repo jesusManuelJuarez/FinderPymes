@@ -2,8 +2,8 @@
 
 import 'dart:io';
 
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart';
 
 import '../../domain/entities/consumer_entity.dart';
@@ -17,8 +17,8 @@ abstract class ConsumerRemoteDataSource {
 }
 
 class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
-  // FirebaseStorage storage = FirebaseStorage.instance;
-  // final db = FirebaseFirestore.instance;
+  FirebaseStorage storage = FirebaseStorage.instance;
+  final db = FirebaseFirestore.instance;
   final String _baseUrl = 'http://50.16.168.171';
 
   final List<ConsumerData> _consumers = [
@@ -130,12 +130,12 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
 
   @override
   Future<String> uploadPhoto(File image) async {
-    // final String namefield = image.path.split('/').last;
-    // final Reference ref = storage.ref().child('photo_profile').child(namefield);
-    // final UploadTask uploadTask = ref.putFile(image);
-    // final TaskSnapshot snapshot = await uploadTask.whenComplete(() => true);
-    // final String urlPhoto = await snapshot.ref.getDownloadURL();
-    // return urlPhoto;
-    return '';
+    final String namefield = image.path.split('/').last;
+    final Reference ref = storage.ref().child('photo_profile').child(namefield);
+    final UploadTask uploadTask = ref.putFile(image);
+    final TaskSnapshot snapshot = await uploadTask.whenComplete(() => true);
+    final String urlPhoto = await snapshot.ref.getDownloadURL();
+    return urlPhoto;
+    // return '';
   }
 }
