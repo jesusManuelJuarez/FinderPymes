@@ -37,7 +37,10 @@ class CustomerElevateBottom extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         label,
-        style: TextStyle(color: textColor, fontSize: SizeResponsize.textSize(15)),
+        style: TextStyle(
+          color: textColor,
+          fontSize: SizeResponsize.textSize(15),
+        ),
       ),
     );
   }

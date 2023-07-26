@@ -24,7 +24,7 @@ class PymesAddress {
   String district;
   String postalCode;
   String cell;
-  int idPymes;
+  int idPymesData;
 
   PymesAddress({
     required this.id,
@@ -34,7 +34,7 @@ class PymesAddress {
     required this.district,
     required this.postalCode,
     required this.cell,
-    required this.idPymes,
+    required this.idPymesData,
   });
 }
 
@@ -43,13 +43,13 @@ class PymesFiscal {
   String rfc;
   String regimeT;
   String fiscalAddress;
-  int idPymes;
+  int idPymesData;
 
   PymesFiscal({
     required this.id,
     required this.rfc,
     required this.regimeT,
     required this.fiscalAddress,
-    required this.idPymes,
+    required this.idPymesData,
   });
 }

@@ -27,7 +27,7 @@ class PymesAddressModel extends PymesAddress {
     required String district,
     required String postalCode,
     required String cell,
-    required int idPymes,
+    required int idPymesData,
   }) : super(
             id: id,
             city: city,
@@ -36,7 +36,7 @@ class PymesAddressModel extends PymesAddress {
             district: district,
             postalCode: postalCode,
             cell: cell,
-            idPymes: idPymes);
+            idPymesData: idPymesData);
 }
 
 class PymesFiscalModel extends PymesFiscal {
@@ -45,12 +45,12 @@ class PymesFiscalModel extends PymesFiscal {
     required String rfc,
     required String regimeT,
     required String fiscalAddress,
-    required int idPymes,
+    required int idPymesData,
   }) : super(
           id: id,
           rfc: rfc,
           regimeT: regimeT,
           fiscalAddress: fiscalAddress,
-          idPymes: idPymes,
+          idPymesData: idPymesData,
         );
 }

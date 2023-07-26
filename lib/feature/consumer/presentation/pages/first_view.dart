@@ -84,9 +84,11 @@ class FirstViewPage extends StatelessWidget {
                   ),
                   CustomerElevateBottom(
                     label: 'Inicia Sesión',
-                    onPressed: () {
-                      consumerProvider.getConsumers();
+                    onPressed: () async {
+                      await consumerProvider.getConsumers();
+                      // ignore: avoid_print
                       print(consumerProvider.consumers!.length);
+                      // ignore: use_build_context_synchronously
                       Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -1,9 +1,11 @@
 import 'package:finder_pymes/feature/consumer/presentation/pages/first_view.dart';
 import 'package:finder_pymes/feature/consumer/presentation/pages/profile.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
+import 'package:finder_pymes/feature/consumer/presentation/provider/data_consumer_provider.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/notifications.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/search.dart';
+import 'package:finder_pymes/feature/pymes/presentation/pages/profile_pymes.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/registerPymes.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
@@ -12,7 +14,8 @@ import 'package:provider/provider.dart';
 
 Widget customBottomNavigationBar(
     int optionSelectToColor, BuildContext context) {
-      ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
+  ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
+  PymesProvider pymesProvider = Provider.of<PymesProvider>(context);
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -64,13 +67,23 @@ Widget customBottomNavigationBar(
                 height: 60,
                 child: IconButton(
                   onPressed: () {
+                    Widget? nextPage;
                     if (optionSelectToColor != 2) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterPymesPage(),
-                        ),
-                      );
+                      if (consumerProvider.loggedInConsumer == null) {
+                        nextPage = const RegisterPymesPage();
+                      } else if (pymesProvider.listPymesData.any((pymes) =>
+                          consumerProvider.loggedInConsumer!.id ==
+                          pymes.idConsumer)) {
+                        nextPage = const ProfilePymesPage();
+                      }
+                      if (nextPage != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterPymesPage(),
+                          ),
+                        );
+                      }
                     }
                   },
                   icon: const Icon(
@@ -150,17 +163,19 @@ Widget customBottomNavigationBar(
                 child: IconButton(
                   onPressed: () {
                     if (optionSelectToColor != 5) {
-                      consumerProvider.loggedInConsumer == null ? Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const FirstViewPage(),
-                        ),
-                      ) : Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProfileConsumer(),
-                        ),
-                      );
+                      consumerProvider.loggedInConsumer == null
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const FirstViewPage(),
+                              ),
+                            )
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfileConsumer(),
+                              ),
+                            );
                     }
                   },
                   icon: const Icon(
