@@ -18,7 +18,7 @@ class CustomerCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: SizeResponsize.textSize(3.819444665)),
+      padding: EdgeInsets.only(bottom: SizeResponsize.textSize(18)),
       child: Container(
         height: SizeResponsize.blockSizeVertical(15),
         width:
@@ -28,9 +28,7 @@ class CustomerCategory extends StatelessWidget {
             Radius.circular(20),
           ),
           image: DecorationImage(
-            image: NetworkImage(
-              urlImage,
-            ),
+            image: AssetImage(urlImage),
             fit: BoxFit.cover,
           ),
         ),

@@ -1,18 +1,24 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:io';
+
 import 'package:finder_pymes/feature/consumer/presentation/pages/login.dart';
+import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/textformfield_customer.dart';
-import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterConsumer extends StatelessWidget {
   const RegisterConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double sizeTextTittle = SizeResponsize.textSize(7.6388893);
-    double sizeTextNormal = SizeResponsize.textSize(3.8194447);
+    ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
+    double sizeTextTittle = SizeResponsize.textSize(20);
+    double sizeTextNormal = SizeResponsize.textSize(10);
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
@@ -62,7 +68,7 @@ class RegisterConsumer extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '¡Crea una nueva cuenta de usuario!',
+                              '¡Crea una nueva cuenta de Consumidor!',
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: sizeTextNormal),
@@ -124,7 +130,8 @@ class RegisterConsumer extends StatelessWidget {
                             label: 'name.lastname@example.com',
                             controller: emailController,
                             validator: (value) {
-                              String pattern = r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$';
+                              String pattern =
+                                  r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$';
                               RegExp regex = RegExp(pattern);
                               if (value == null || value.isEmpty) {
                                 return 'Escriba un correo correcto';
@@ -159,7 +166,8 @@ class RegisterConsumer extends StatelessWidget {
                             label: 'Contraseña',
                             controller: passwordController,
                             validator: (value) {
-                              String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$';
+                              String pattern =
+                                  r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$';
                               RegExp regex = RegExp(pattern);
                               if (value == null || value.isEmpty) {
                                 return 'Escriba un contraseña correcta';
@@ -179,18 +187,103 @@ class RegisterConsumer extends StatelessWidget {
                     CustomerElevateBottom(
                       label: 'Crear Cuenta',
                       onPressed: () {
-                        if (keyFormRegister.currentState!.validate()) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomeFirst(),
-                            ),
-                          );
-                        }
+                        // if (keyFormRegister.currentState!.validate()) {}
+
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Añadir foto de perfil'),
+                              content: const Text(
+                                  '¿Quieres añadir una foto de perfil?'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('Nop'),
+                                  onPressed: () {
+                                    consumerProvider.registerConsumer(
+                                        nameController.text,
+                                        emailController.text,
+                                        passwordController.text,
+                                        '');
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text('¡Va!'),
+                                  onPressed: () async {
+                                    String urlPhoto = '';
+                                    File? image =
+                                        await consumerProvider.getImage();
+                                    if (image != null) {
+                                      urlPhoto = await consumerProvider
+                                          .uploadImage(image);
+                                    }
+                                    // String newConsumerWasCreated =
+                                    //     await consumerProvider.registerConsumer(
+                                    //         nameController.text,
+                                    //         emailController.text,
+                                    //         passwordController.text,
+                                    //         urlPhoto);
+
+                                    // if (newConsumerWasCreated ==
+                                    //     'REGISTRO EXITOSO') {
+                                    //   showDialog(
+                                    //     context: context,
+                                    //     builder: (BuildContext context) {
+                                    //       Future.delayed(
+                                    //           const Duration(seconds: 4), () {
+                                    //         Navigator.of(context).pop();
+                                    //       });
+                                    //       return const AlertDialog(
+                                    //         title: Row(
+                                    //           children: [
+                                    //             Icon(Icons.check_circle,
+                                    //                 color: Colors.green),
+                                    //             SizedBox(width: 10),
+                                    //             Text('Éxito',
+                                    //                 style: TextStyle(
+                                    //                     color: Colors.green)),
+                                    //           ],
+                                    //         ),
+                                    //         content: Text(
+                                    //             'Usuario creado correctamente.'),
+                                    //       );
+                                    //     },
+                                    //   );
+                                    // } else {
+                                    //   showDialog(
+                                    //     context: context,
+                                    //     builder: (BuildContext context) {
+                                    //       Future.delayed(
+                                    //           const Duration(seconds: 4), () {
+                                    //         Navigator.of(context).pop();
+                                    //       });
+                                    //       return const AlertDialog(
+                                    //         title: Row(
+                                    //           children: [
+                                    //             Icon(Icons.error,
+                                    //                 color: Colors.red),
+                                    //             SizedBox(width: 10),
+                                    //             Text('Error',
+                                    //                 style: TextStyle(
+                                    //                     color: Colors.red)),
+                                    //           ],
+                                    //         ),
+                                    //         content: Text(
+                                    //             'Hubo un error al crear el usuario.'),
+                                    //       );
+                                    //     },
+                                    //   );
+                                    // }
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
                       },
                       backgroundColor: DataColors.colorBlueBottom,
                       textColor: DataColors.colorWhite,
-                      sizeHorizontal: SizeResponsize.textSize(6.671296682),
+                      sizeHorizontal: SizeResponsize.textSize(22),
                     ),
                     RichText(
                       text: TextSpan(

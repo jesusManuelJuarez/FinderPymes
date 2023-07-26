@@ -5,43 +5,43 @@ class CategoryProvider with ChangeNotifier {
   final List<Map<String, String>> _categories = [
     {
       'name': 'Alimentos y Bebidas',
-      'imagePath': 'assets/images/categories/food_and_beverages.jpg',
+      'imagePath': 'assets/images/category/alimentos_y_bebidas.jpg',
     },
     {
       'name': 'Ropa y Accesorios',
-      'imagePath': 'assets/images/categories/clothing_and_accessories.jpg',
+      'imagePath': 'assets/images/category/ropa_y_accessorios.jpg',
     },
     {
       'name': 'Salud y Belleza',
-      'imagePath': 'assets/images/categories/health_and_beauty.jpg',
+      'imagePath': 'assets/images/category/salud_y_belleza.jpg',
     },
     {
       'name': 'Hogar y Jardín',
-      'imagePath': 'assets/images/categories/home_and_garden.jpg',
+      'imagePath': 'assets/images/category/hogar_y_jardin.jpg',
     },
     {
       'name': 'Tecnología',
-      'imagePath': 'assets/images/categories/technology.jpg',
+      'imagePath': 'assets/images/category/tecnologia.jpg',
     },
     {
       'name': 'Automotriz',
-      'imagePath': 'assets/images/categories/automotive.jpg',
+      'imagePath': 'assets/images/category/automotriz.jpg',
     },
     {
       'name': 'Servicios Profesionales',
-      'imagePath': 'assets/images/categories/professional_services.jpg',
+      'imagePath': 'assets/images/category/servicios_profesionales.jpg',
     },
     {
       'name': 'Entretenimiento y Ocio',
-      'imagePath': 'assets/images/categories/entertainment_and_leisure.jpg',
+      'imagePath': 'assets/images/category/entretenimiento_y_ocio.jpg',
     },
     {
       'name': 'Educación y Formación',
-      'imagePath': 'assets/images/categories/education_and_training.jpg',
+      'imagePath': 'assets/images/category/educacion_y_formacion.jpg',
     },
     {
       'name': 'Viajes y Alojamiento',
-      'imagePath': 'assets/images/categories/travel_and_accommodation.jpg',
+      'imagePath': 'assets/images/category/viajes_y_alojamiento.jpg',
     },
   ];
 

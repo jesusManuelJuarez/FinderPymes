@@ -10,7 +10,7 @@ class FirstViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double sizeText = SizeResponsize.textSize(5.092592595539695);
+    double sizeText = SizeResponsize.textSize(15);
 
     return Scaffold(
       backgroundColor: DataColors.colorPinkBackground,
@@ -35,7 +35,7 @@ class FirstViewPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: SizeResponsize.textSize(12.731482)),
+                  padding: EdgeInsets.symmetric(horizontal: SizeResponsize.textSize(15)),
                   child: Text(
                     'Descubre promociones exclusivas y apoya a las PYMES de tu localidad con FinderPymes. \n ¡Conéctate, ahorra y disfruta!',
                     style: TextStyle(
@@ -76,7 +76,7 @@ class FirstViewPage extends StatelessWidget {
                     },
                     backgroundColor: DataColors.colorWhite,
                     textColor: DataColors.colorBlueText,
-                    sizeHorizontal: SizeResponsize.textSize(7),
+                    sizeHorizontal: SizeResponsize.textSize(22),
                   ),
                   CustomerElevateBottom(
                     label: 'Inicia Sesión',
@@ -90,7 +90,7 @@ class FirstViewPage extends StatelessWidget {
                     },
                     backgroundColor: DataColors.colorBlueBottom,
                     textColor: DataColors.colorWhite,
-                    sizeHorizontal: SizeResponsize.textSize(6),
+                    sizeHorizontal: SizeResponsize.textSize(20),
                   ),
                 ],
               ),

@@ -14,8 +14,8 @@ class LoginConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
-    double sizeTextTittle = SizeResponsize.textSize(7.6388893);
-    double sizeTextNormal = SizeResponsize.textSize(3.8194447);
+    double sizeTextTittle = SizeResponsize.textSize(20);
+    double sizeTextNormal = SizeResponsize.textSize(10);
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final keyFormLogin = GlobalKey<FormState>();
@@ -170,7 +170,7 @@ class LoginConsumer extends StatelessWidget {
                       },
                       backgroundColor: DataColors.colorBlueBottom,
                       textColor: DataColors.colorWhite,
-                      sizeHorizontal: SizeResponsize.textSize(6.569444825),
+                      sizeHorizontal: SizeResponsize.textSize(22),
                     ),
                     RichText(
                       text: TextSpan(

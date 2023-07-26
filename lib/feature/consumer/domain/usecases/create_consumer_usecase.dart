@@ -2,10 +2,10 @@ import 'package:finder_pymes/feature/consumer/domain/repositories/consumer_repos
 
 import '../entities/consumer_entity.dart';
 
-class CreateUserUsecase{
+class CreateConsumerUsecase{
   final ConsumerRepository consumerRepository;
 
-  CreateUserUsecase(this.consumerRepository);
+  CreateConsumerUsecase(this.consumerRepository);
 
   Future<String> execute(ConsumerData consumer) async {
     return consumerRepository.createConsumer(consumer);

@@ -1,5 +1,9 @@
 // ignore_for_file: avoid_print, unused_import, unused_field
 
+import 'dart:io';
+
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart';
 
 import '../../domain/entities/consumer_entity.dart';
@@ -9,9 +13,12 @@ abstract class ConsumerRemoteDataSource {
   Future<String> createConsumer(ConsumerData consumer);
   Future<List<ConsumerData>> getConsumer();
   Future<ConsumerData> loginConsumer(String email, String password);
+  Future<String> uploadPhoto(File image);
 }
 
 class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
+  // FirebaseStorage storage = FirebaseStorage.instance;
+  // final db = FirebaseFirestore.instance;
   final String _baseUrl = 'http://50.16.168.171';
 
   final List<ConsumerData> _consumers = [
@@ -27,7 +34,8 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       id: 2,
       name: 'Yhander Gamaliel Diaz Perez',
       email: '201284@ids.upchiapas.edu.mx',
-      urlPhoto: 'https://i.pinimg.com/564x/80/93/2e/80932e57b837a4df10e9f928894d3b05.jpg',
+      urlPhoto:
+          'https://i.pinimg.com/564x/80/93/2e/80932e57b837a4df10e9f928894d3b05.jpg',
       password: 'YhanderC101',
       idPlantFP: 2,
     ),
@@ -43,7 +51,8 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       id: 4,
       name: 'Gama Diaz Perez',
       email: 'asd@asd.asd',
-      urlPhoto: 'https://i.pinimg.com/564x/6f/f7/84/6ff784a27af1c40959809255331880ad.jpg',
+      urlPhoto:
+          'https://i.pinimg.com/564x/6f/f7/84/6ff784a27af1c40959809255331880ad.jpg',
       password: 'Qwerty1',
       idPlantFP: 4,
     ),
@@ -52,7 +61,7 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
   @override
   Future<String> createConsumer(ConsumerData consumer) async {
     _consumers.add(ConsumerData(
-      id: consumer.id,
+      id: _consumers.length + 1,
       name: consumer.name,
       email: consumer.email,
       urlPhoto: consumer.urlPhoto,
@@ -60,7 +69,7 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       idPlantFP: consumer.idPlantFP,
     ));
 
-    return 'Se registro al Consumer';
+    return 'REGISTRO EXITOSO';
   }
 
   @override
@@ -108,8 +117,7 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       //       'Failed to login. Status code: ${response.statusCode}, Response body: ${response.body}');
       // }
       for (var cons in _consumers) {
-        if (email == cons.email &&
-            password == cons.password) {
+        if (email == cons.email && password == cons.password) {
           return cons;
         }
       }
@@ -118,5 +126,16 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
     } catch (e) {
       throw Exception('Failed to login: $e');
     }
+  }
+
+  @override
+  Future<String> uploadPhoto(File image) async {
+    // final String namefield = image.path.split('/').last;
+    // final Reference ref = storage.ref().child('photo_profile').child(namefield);
+    // final UploadTask uploadTask = ref.putFile(image);
+    // final TaskSnapshot snapshot = await uploadTask.whenComplete(() => true);
+    // final String urlPhoto = await snapshot.ref.getDownloadURL();
+    // return urlPhoto;
+    return '';
   }
 }

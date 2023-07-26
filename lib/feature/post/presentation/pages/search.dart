@@ -9,7 +9,7 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double sizeTextTittle = SizeResponsize.textSize(6.5);
+    double sizeTextTittle = SizeResponsize.textSize(20);
     // double sizeTextNormal = SizeResponsize.textSize(5.092592887);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -31,12 +31,15 @@ class SearchView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const CustomerTextFormField(
-                  label: 'Buscar servicios o productos',
-                  iconSuffixIcon: Icon(Icons.search),
-                  borderColor: DataColors.colorBlack,
-                  typeKeyboard: TextInputType.text,
-                  obscureText: false,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: SizeResponsize.textSize(15)),
+                  child: const CustomerTextFormField(
+                    label: 'Buscar servicios o productos',
+                    iconSuffixIcon: Icon(Icons.search),
+                    borderColor: DataColors.colorBlack,
+                    typeKeyboard: TextInputType.text,
+                    obscureText: false,
+                  ),
                 ),
               ],
             ),
