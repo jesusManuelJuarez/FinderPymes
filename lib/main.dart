@@ -3,10 +3,11 @@ import 'package:finder_pymes/feature/consumer/data/repository/consumer_repositor
 import 'package:finder_pymes/feature/consumer/domain/usecases/get_consumer_usecase.dart';
 import 'package:finder_pymes/feature/consumer/domain/usecases/login_consumer_usecase.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
+import 'package:finder_pymes/feature/pymes/presentation/providers/widget_pymes_provider.dart';
 import 'package:finder_pymes/feature/post/presentation/pages/init_view.dart';
-import 'package:finder_pymes/feature/pruebas.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/image_picker_provider.dart';
 import 'package:finder_pymes/feature/pymes/presentation/pages/stepper_state.dart';
+import 'package:finder_pymes/restart_app.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,19 +22,25 @@ void main() {
   final loginConsumerUsecase =
       LoginConsumerUsecase(consumerRepository: consumerRepository);
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (context) => ConsumerProvider(getConsumerUsecase, loginConsumerUsecase),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => StepperState(),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => ImagePickerProvider(),
-      ),
-    ],
-    child: const MyApp(),
+  runApp(RestartWidget(
+    child: MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) =>
+              ConsumerProvider(getConsumerUsecase, loginConsumerUsecase),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => StepperState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ImagePickerProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CategoryProvider(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
   ));
 }
 

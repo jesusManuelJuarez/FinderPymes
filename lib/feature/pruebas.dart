@@ -1,4 +1,3 @@
-import 'package:finder_pymes/feature/consumer/domain/entities/consumer_entity.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,13 +8,6 @@ class PaginaPruebas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ConsumerProvider consumerProvider = Provider.of<ConsumerProvider>(context);
-    ConsumerData consumer = ConsumerData(
-      id: 0,
-      name: '',
-      email: 'yhander@is.com',
-      password: 'Maybe12',
-      idPlantFP: 0,
-    );
 
     return Scaffold(
       body: SafeArea(
@@ -24,7 +16,7 @@ class PaginaPruebas extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    consumerProvider.loginConsumer(consumer);
+                    consumerProvider.loginConsumer('', '');
                   },
                   child: const Text('Funciona??')),
               Expanded(

@@ -18,8 +18,8 @@ class ConsumerRepositoryImp implements ConsumerRepository {
   }
 
   @override
-  Future<ConsumerData> loginConsumer(ConsumerData consumer) async {
-    return await consumerRemoteDataSource.loginConsumer(consumer);
+  Future<ConsumerData> loginConsumer(String email, String password) async {
+    return await consumerRemoteDataSource.loginConsumer(email, password);
   }
 
 }

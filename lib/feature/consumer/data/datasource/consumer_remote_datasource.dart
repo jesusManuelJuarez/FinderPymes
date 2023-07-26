@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unused_import, unused_field
 
 import 'package:http/http.dart';
 
@@ -8,7 +8,7 @@ import 'dart:convert';
 abstract class ConsumerRemoteDataSource {
   Future<String> createConsumer(ConsumerData consumer);
   Future<List<ConsumerData>> getConsumer();
-  Future<ConsumerData> loginConsumer(ConsumerData consumer);
+  Future<ConsumerData> loginConsumer(String email, String password);
 }
 
 class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
@@ -19,6 +19,7 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       id: 1,
       name: 'Alonso Anselmo Gomez Sanchez',
       email: '201276@ids.upchiapas.edu.mx',
+      urlPhoto: '',
       password: 'Annita12',
       idPlantFP: 1,
     ),
@@ -26,15 +27,25 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       id: 2,
       name: 'Yhander Gamaliel Diaz Perez',
       email: '201284@ids.upchiapas.edu.mx',
-      password: 'Yhander C101',
+      urlPhoto: 'https://i.pinimg.com/564x/80/93/2e/80932e57b837a4df10e9f928894d3b05.jpg',
+      password: 'YhanderC101',
       idPlantFP: 2,
     ),
     ConsumerData(
       id: 3,
       name: 'Jesus Manuel Juarez Acosta',
       email: '193201@ids.upchiapas.edu.mx',
+      urlPhoto: '',
       password: 'anaForLoving',
       idPlantFP: 3,
+    ),
+    ConsumerData(
+      id: 4,
+      name: 'Gama Diaz Perez',
+      email: 'asd@asd.asd',
+      urlPhoto: 'https://i.pinimg.com/564x/6f/f7/84/6ff784a27af1c40959809255331880ad.jpg',
+      password: 'Qwerty1',
+      idPlantFP: 4,
     ),
   ];
 
@@ -44,6 +55,7 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       id: consumer.id,
       name: consumer.name,
       email: consumer.email,
+      urlPhoto: consumer.urlPhoto,
       password: consumer.password,
       idPlantFP: consumer.idPlantFP,
     ));
@@ -77,7 +89,7 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
   }
 
   @override
-  Future<ConsumerData> loginConsumer(ConsumerData consumer) async {
+  Future<ConsumerData> loginConsumer(String email, String password) async {
     try {
       // Response response = await post(Uri.parse('http://50.16.168.171/login'),
       //     body: {"email": consumer.email, "password": consumer.password});
@@ -96,8 +108,8 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       //       'Failed to login. Status code: ${response.statusCode}, Response body: ${response.body}');
       // }
       for (var cons in _consumers) {
-        if (consumer.email == cons.email &&
-            consumer.password == cons.password) {
+        if (email == cons.email &&
+            password == cons.password) {
           return cons;
         }
       }

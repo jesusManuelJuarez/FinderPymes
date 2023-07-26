@@ -6,7 +6,7 @@ class LoginConsumerUsecase {
 
   LoginConsumerUsecase({required this.consumerRepository});
 
-  Future<ConsumerData> execute(ConsumerData consumer) async{
-    return await consumerRepository.loginConsumer(consumer);
+  Future<ConsumerData> execute(String email, String password) async{
+    return await consumerRepository.loginConsumer(email, password);
   }
 }

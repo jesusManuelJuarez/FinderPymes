@@ -1,10 +1,8 @@
-import 'package:finder_pymes/feature/consumer/domain/entities/consumer_entity.dart';
 import 'package:finder_pymes/feature/consumer/presentation/pages/profile.dart';
 import 'package:finder_pymes/feature/consumer/presentation/pages/register.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/textformfield_customer.dart';
-import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +19,6 @@ class LoginConsumer extends StatelessWidget {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final keyFormLogin = GlobalKey<FormState>();
-    ConsumerData consumerToLogged;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: DataColors.colorPinkBackground,
@@ -152,16 +149,9 @@ class LoginConsumer extends StatelessWidget {
                       label: 'Iniciar Sesión',
                       onPressed: () async {
                         if (keyFormLogin.currentState!.validate()) {
-                          consumerToLogged = ConsumerData(
-                            email: emailController.text,
-                            password: passwordController.text,
-                            id: 0,
-                            idPlantFP: 0,
-                            name: '',
-                          );
                           try {
-                            await consumerProvider
-                                .loginConsumer(consumerToLogged);
+                            await consumerProvider.loginConsumer(
+                                emailController.text, passwordController.text);
                             // ignore: use_build_context_synchronously
                             showDialogWelcome(context, consumerProvider);
                           } catch (e) {
@@ -228,6 +218,7 @@ class LoginConsumer extends StatelessWidget {
   Future<dynamic> showDialogWelcome(
       BuildContext context, ConsumerProvider consumerProvider) {
     return showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         Future.delayed(const Duration(seconds: 3), () {
@@ -253,19 +244,6 @@ class LoginConsumer extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text(
-                'Cerrar',
-                style: TextStyle(
-                  color: Colors.blue,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
         );
       },
     );

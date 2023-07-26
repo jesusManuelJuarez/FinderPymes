@@ -34,9 +34,9 @@ class ConsumerProvider with ChangeNotifier {
     }
   }
 
-  Future<void> loginConsumer(ConsumerData consumer) async {
+  Future<void> loginConsumer(String email, String password) async {
     try {
-      _loggedInConsumer = await loginConsumerUsecase.execute(consumer);
+      _loggedInConsumer = await loginConsumerUsecase.execute(email, password);
 
       if (_loggedInConsumer == null) {
         print('Error a la hora de loggear');
@@ -46,6 +46,13 @@ class ConsumerProvider with ChangeNotifier {
       }
     } catch (e) {
       print('Hubo un error en ConsumerProvider.loginConsumer $e');
+    }
+  }
+
+  void closeSesion() {
+    if (_loggedInConsumer != null) {
+      _loggedInConsumer = null;
+      notifyListeners();
     }
   }
 }
