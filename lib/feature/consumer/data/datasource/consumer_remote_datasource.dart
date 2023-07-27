@@ -34,9 +34,9 @@ class ConsumerRemoteDataSoucerImp implements ConsumerRemoteDataSource {
       id: 2,
       name: 'Yhander Gamaliel Diaz Perez',
       email: '201284@ids.upchiapas.edu.mx',
+      password: 'YhanderC101',
       urlPhoto:
           'https://i.pinimg.com/564x/80/93/2e/80932e57b837a4df10e9f928894d3b05.jpg',
-      password: 'YhanderC101',
       idPlantFP: 2,
     ),
     ConsumerData(

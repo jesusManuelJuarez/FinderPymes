@@ -1,11 +1,15 @@
-import 'package:finder_pymes/feature/pymes/presentation/providers/stepper_state.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class FourStepRegisterPymes extends StatelessWidget {
   final PageController pageController;
-  const FourStepRegisterPymes({super.key, required this.pageController});
+  final TextEditingController planController;
+  final void Function()? onPressed;
+  const FourStepRegisterPymes(
+      {super.key,
+      required this.pageController,
+      required this.planController,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -368,7 +372,9 @@ class FourStepRegisterPymes extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          planController.text = '3';
+                        },
                         child: const Text('Suscribirse'),
                       ),
                     ),
@@ -484,7 +490,9 @@ class FourStepRegisterPymes extends StatelessWidget {
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                                 const Color.fromRGBO(242, 142, 144, 1))),
-                        onPressed: () {},
+                        onPressed: () {
+                          planController.text = '2';
+                        },
                         child: const Text('Suscribirse'),
                       ),
                     ),
@@ -584,7 +592,9 @@ class FourStepRegisterPymes extends StatelessWidget {
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                                 const Color.fromRGBO(95, 95, 95, 1))),
-                        onPressed: () {},
+                        onPressed: () {
+                          planController.text = '1';
+                        },
                         child: const Text('Suscribirse'),
                       ),
                     ),
@@ -603,16 +613,7 @@ class FourStepRegisterPymes extends StatelessWidget {
                   Size(SizeResponsize.blockSizeHorizontal(100), 50),
                 ), // Tamaño mínimo
               ),
-              onPressed: () {
-                var stepperState =
-                    Provider.of<StepperState>(context, listen: false);
-                stepperState.setIndex(stepperState.currentIndex - 1);
-                pageController.animateToPage(
-                  stepperState.currentIndex,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
-                );
-              },
+              onPressed: onPressed,
               child: const Text(
                 'Registrarse',
                 style: TextStyle(fontSize: 20),

@@ -5,9 +5,9 @@ import 'package:finder_pymes/feature/consumer/domain/usecases/get_consumer_useca
 import 'package:finder_pymes/feature/consumer/domain/usecases/login_consumer_usecase.dart';
 import 'package:finder_pymes/feature/consumer/domain/usecases/upload_photo_consumer_usecase.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
-import 'package:finder_pymes/feature/consumer/presentation/provider/data_consumer_provider.dart';
-import 'package:finder_pymes/feature/post/presentation/pages/init_view.dart';
-import 'package:finder_pymes/feature/pymes/presentation/pages/profile_pymes.dart';
+import 'package:finder_pymes/feature/post/presentation/providers/post_provider.dart';
+import 'package:finder_pymes/feature/pymes/presentation/providers/pymes_provider.dart';
+import 'package:finder_pymes/feature/sources/presentation/widgets/init_view.dart';
 import 'package:finder_pymes/feature/pymes/presentation/providers/widget_pymes_provider.dart';
 import 'package:finder_pymes/feature/pymes/presentation/providers/image_picker_provider.dart';
 import 'package:finder_pymes/feature/pymes/presentation/providers/stepper_state.dart';
@@ -52,13 +52,16 @@ void main() async {
           create: (context) => StepperState(),
         ),
         ChangeNotifierProvider(
-          create: (context) => ImagePickerProvider(),
+          create: (context) => ImagePickerProviderPymes(),
         ),
         ChangeNotifierProvider(
           create: (context) => CategoryProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => PymesProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PostProvider(),
         ),
       ],
       child: const MyApp(),

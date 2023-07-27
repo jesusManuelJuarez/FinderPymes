@@ -1,17 +1,35 @@
+import 'package:finder_pymes/feature/pymes/presentation/providers/pymes_provider.dart';
 import 'package:finder_pymes/feature/pymes/presentation/widgets/four_step_register_pymes.dart';
 import 'package:finder_pymes/feature/pymes/presentation/widgets/one_step_register_pymes.dart';
 import 'package:finder_pymes/feature/pymes/presentation/widgets/three_step_register_pymes.dart';
 import 'package:finder_pymes/feature/pymes/presentation/widgets/two_step_register_pymes.dart';
+import 'package:finder_pymes/feature/sources/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/stepper_state.dart';
 
-class DatosEmpresaPage extends StatelessWidget {
+class DatosEmpresaPage extends StatefulWidget {
+  const DatosEmpresaPage({super.key});
+
+  @override
+  State<DatosEmpresaPage> createState() => _DatosEmpresaPageState();
+}
+
+class _DatosEmpresaPageState extends State<DatosEmpresaPage> {
   final PageController _pageController = PageController();
 
-  DatosEmpresaPage({super.key});
+  TextEditingController nameController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController categoriaController = TextEditingController();
+  TextEditingController urlController = TextEditingController();
+  TextEditingController rfcController = TextEditingController();
+  TextEditingController regimenController = TextEditingController();
+  TextEditingController domicilioController = TextEditingController();
+  TextEditingController urlProfileController = TextEditingController();
+  TextEditingController urlBannerController = TextEditingController();
+  TextEditingController planController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +92,14 @@ class DatosEmpresaPage extends StatelessWidget {
     );
   }
 
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   Align allSteppers(BuildContext context) {
+    final pymesProvider = Provider.of<PymesProvider>(context);
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
@@ -106,17 +131,92 @@ class DatosEmpresaPage extends StatelessWidget {
                 case 0:
                   return OneStepRegisterPymes(
                     pageController: _pageController,
+                    nameController: nameController,
+                    descriptionController: descriptionController,
+                    categoriaController: categoriaController,
+                    urlController: urlController,
                   );
                 case 1:
                   return TwoStepRegisterPymes(
                     pageController: _pageController,
+                    rfcController: rfcController,
+                    regimenFiscal: regimenController,
+                    domicilioFiscal: domicilioController,
                   );
                 case 2:
                   return ThreeStepRegisterPymes(
-                      pageController: _pageController);
+                    pageController: _pageController,
+                    urlProfileController: urlProfileController,
+                    urlBannerController: urlBannerController,
+                  );
                 case 3:
                   return FourStepRegisterPymes(
                     pageController: _pageController,
+                    planController: planController,
+                    onPressed: () {
+                      Map<String, dynamic> newpyme = {
+                        'id': pymesProvider.lengthList + 1,
+                        'idUser': /* consumerProvider.loggedInConsumer!.id */
+                            15,
+                        'name': nameController.text,
+                        'description': descriptionController.text,
+                        'urlPhotoProfile': urlProfileController.text,
+                        'urlBannerProfile':
+                            urlBannerController.text, // Aquí está el cambio
+                        'urlWebSite': urlController.text,
+                        'phoneNumber': 'ERROR',
+                        'colonia': 'ERROR',
+                        'city': 'ERROR',
+                        'zipCode': 'ERROR',
+                        'latitud': 16.61616001722664,
+                        'longitud': -93.09072390802642,
+                        'type': categoriaController.text,
+                      };
+
+                      String seSubio = pymesProvider.addPyme(newpyme);
+
+                      if (seSubio == 'EXITO') {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            Future.delayed(
+                              const Duration(seconds: 4),
+                              () {
+                                Navigator.of(context)
+                                    .pop(); // Cierra el dialogo
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeFirst(),
+                                  ), // Navega a HomeView
+                                );
+                              },
+                            );
+                            return const AlertDialog(
+                              title: Text('Mensaje'),
+                              content: Text('Se creo con Exito'),
+                            );
+                          },
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            Future.delayed(
+                              const Duration(seconds: 4),
+                              () {
+                                Navigator.of(context)
+                                    .pop(); // Cierra el dialogo
+                              },
+                            );
+                            return const AlertDialog(
+                              title: Text('Error'),
+                              content: Text('Hubo un error al crearlo'),
+                            );
+                          },
+                        );
+                      }
+                    },
                   );
               }
               return Container();
@@ -129,7 +229,7 @@ class DatosEmpresaPage extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-class Stepper extends StatelessWidget {
+class Stepper extends StatefulWidget {
   int index;
   int currentIndex;
 
@@ -142,6 +242,11 @@ class Stepper extends StatelessWidget {
       required this.onTap,
       this.isLast = false});
 
+  @override
+  State<Stepper> createState() => _StepperState();
+}
+
+class _StepperState extends State<Stepper> {
   final List<String> titles = [
     'Datos básicos',
     'Inf. Encargado',
@@ -151,7 +256,7 @@ class Stepper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isLast
+    return widget.isLast
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -163,43 +268,43 @@ class Stepper extends StatelessWidget {
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: index <= currentIndex
+                      color: widget.index <= widget.currentIndex
                           ? const Color.fromRGBO(241, 135, 137, 1)
                           : const Color.fromRGBO(95, 95, 95, 1),
                       border: Border.all(
-                          color: currentIndex >= index
+                          color: widget.currentIndex >= widget.index
                               ? const Color.fromRGBO(95, 95, 95, 1)
                               : const Color.fromRGBO(95, 95, 95, 1)),
                     ),
                     child: Center(
-                      child: index == currentIndex
+                      child: widget.index == widget.currentIndex
                           ? const Icon(Icons.edit,
                               color: Colors
                                   .white) // Icono de edición para el paso actual.
-                          : (currentIndex > index
+                          : (widget.currentIndex > widget.index
                               ? const Icon(Icons.check,
                                   color: Colors
                                       .white) // Icono de check para los pasos completados.
                               : null), // Nada para los pasos que aún no se han alcanzado.
                     ),
                   ),
-                  if (!isLast)
+                  if (!widget.isLast)
                     Expanded(
                         child: Container(
                       height: 1,
-                      color: currentIndex >= index + 1
+                      color: widget.currentIndex >= widget.index + 1
                           ? const Color.fromRGBO(241, 135, 137, 1)
                           : Colors.black,
                     ))
                 ],
               ),
               Text(
-                'PASO ${index + 1}',
+                'PASO ${widget.index + 1}',
                 style: const TextStyle(
                     color: Color.fromRGBO(95, 95, 95, 1), fontSize: 14),
               ),
               Text(
-                titles[index],
+                titles[widget.index],
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Container(
@@ -207,13 +312,15 @@ class Stepper extends StatelessWidget {
                 height: SizeResponsize.blockSizeVertical(3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: index <= currentIndex
+                  color: widget.index <= widget.currentIndex
                       ? const Color.fromRGBO(241, 135, 137, 1)
                       : const Color.fromRGBO(95, 95, 95, 1),
                 ),
                 child: Center(
                   child: Text(
-                    currentIndex > index ? 'Completado' : 'En progreso',
+                    widget.currentIndex > widget.index
+                        ? 'Completado'
+                        : 'En progreso',
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
@@ -232,20 +339,20 @@ class Stepper extends StatelessWidget {
                       height: 35,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: index <= currentIndex
+                        color: widget.index <= widget.currentIndex
                             ? const Color.fromRGBO(241, 135, 137, 1)
                             : const Color.fromRGBO(95, 95, 95, 1),
                         border: Border.all(
-                            color: currentIndex >= index
+                            color: widget.currentIndex >= widget.index
                                 ? const Color.fromRGBO(95, 95, 95, 1)
                                 : const Color.fromRGBO(95, 95, 95, 1)),
                       ),
                       child: Center(
-                        child: index == currentIndex
+                        child: widget.index == widget.currentIndex
                             ? const Icon(Icons.edit,
                                 color: Colors
                                     .white) // Icono de edición para el paso actual.
-                            : (currentIndex > index
+                            : (widget.currentIndex > widget.index
                                 ? const Icon(Icons.check,
                                     color: Colors
                                         .white) // Icono de check para los pasos completados.
@@ -255,19 +362,19 @@ class Stepper extends StatelessWidget {
                     Expanded(
                         child: Container(
                       height: 1,
-                      color: currentIndex >= index + 1
+                      color: widget.currentIndex >= widget.index + 1
                           ? const Color.fromRGBO(241, 135, 137, 1)
                           : const Color.fromRGBO(95, 95, 95, 1),
                     ))
                   ],
                 ),
                 Text(
-                  'PASO ${index + 1}',
+                  'PASO ${widget.index + 1}',
                   style: const TextStyle(
                       color: Color.fromRGBO(95, 95, 95, 1), fontSize: 14),
                 ),
                 Text(
-                  titles[index],
+                  titles[widget.index],
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Container(
@@ -275,13 +382,15 @@ class Stepper extends StatelessWidget {
                   height: SizeResponsize.blockSizeVertical(3),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: index <= currentIndex
+                    color: widget.index <= widget.currentIndex
                         ? const Color.fromRGBO(241, 135, 137, 1)
                         : const Color.fromRGBO(95, 95, 95, 1),
                   ),
                   child: Center(
                     child: Text(
-                      currentIndex > index ? 'Completado' : 'En progreso',
+                      widget.currentIndex > widget.index
+                          ? 'Completado'
+                          : 'En progreso',
                       style: const TextStyle(color: Colors.white),
                     ),
                   ),

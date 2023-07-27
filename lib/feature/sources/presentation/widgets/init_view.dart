@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:finder_pymes/feature/post/presentation/pages/home_cons.dart';
+import 'package:finder_pymes/feature/sources/presentation/pages/home_cons.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
 import 'package:finder_pymes/settings/styles/colors.dart';
 import 'package:flutter/material.dart';

@@ -188,7 +188,6 @@ class RegisterConsumer extends StatelessWidget {
                       label: 'Crear Cuenta',
                       onPressed: () {
                         // if (keyFormRegister.currentState!.validate()) {}
-
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {

@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CategoryDropdown extends StatelessWidget {
+  final TextEditingController controller;
   const CategoryDropdown({
     super.key,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
     return Consumer<CategoryProvider>(
       builder: (context, categoryProvider, child) {
         return DropdownButton<String>(

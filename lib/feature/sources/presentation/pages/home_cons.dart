@@ -12,7 +12,7 @@ class HomeFirst extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var categoryProvider = Provider.of<CategoryProvider>(context);
+    final categoryProvider = Provider.of<CategoryProvider>(context);
 
     final TextEditingController searchController = TextEditingController();
 
@@ -54,9 +54,8 @@ class HomeFirst extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
-                  left: SizeResponsize.textSize(20),
-                  right: SizeResponsize.textSize(20),
+                padding: EdgeInsets.symmetric(
+                  horizontal: SizeResponsize.textSize(20),
                 ),
                 // ignore: unnecessary_null_comparison
                 child: searchController.text == null

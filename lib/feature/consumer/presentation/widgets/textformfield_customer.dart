@@ -8,6 +8,7 @@ class CustomerTextFormField extends StatelessWidget {
   final Color borderColor;
   final TextInputType typeKeyboard;
   final bool obscureText;
+  final void Function(String)? onChanged;
   const CustomerTextFormField({
     super.key,
     required this.label,
@@ -17,6 +18,7 @@ class CustomerTextFormField extends StatelessWidget {
     required this.borderColor,
     required this.typeKeyboard,
     required this.obscureText,
+    this.onChanged,
   });
 
   @override
@@ -39,6 +41,7 @@ class CustomerTextFormField extends StatelessWidget {
       keyboardType: typeKeyboard,
       obscureText: obscureText,
       validator: validator,
+      onChanged: onChanged,
     );
   }
 }

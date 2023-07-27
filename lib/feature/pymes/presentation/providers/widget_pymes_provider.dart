@@ -43,6 +43,10 @@ class CategoryProvider with ChangeNotifier {
       'name': 'Viajes y Alojamiento',
       'imagePath': 'assets/images/category/viajes_y_alojamiento.jpg',
     },
+    {
+      'name': 'Musica y Grupos',
+      'imagePath': 'assets/images/category/musica_y_grupos.jpg',
+    },
   ];
 
   String? get selectedCategory => _selectedCategory;
