@@ -6,8 +6,8 @@ import 'package:finder_pymes/feature/consumer/domain/usecases/login_consumer_use
 import 'package:finder_pymes/feature/consumer/domain/usecases/upload_photo_consumer_usecase.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/data_consumer_provider.dart';
+import 'package:finder_pymes/feature/pymes/presentation/pages/profile_pymes.dart';
 import 'package:finder_pymes/feature/pymes/presentation/providers/widget_pymes_provider.dart';
-import 'package:finder_pymes/feature/post/presentation/pages/init_view.dart';
 import 'package:finder_pymes/feature/pymes/presentation/providers/image_picker_provider.dart';
 import 'package:finder_pymes/feature/pymes/presentation/providers/stepper_state.dart';
 import 'package:finder_pymes/restart_app.dart';
@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const InitView(),
+      home: const ProfilePymesPage(),
       // home: const InitView(),
     );
   }
