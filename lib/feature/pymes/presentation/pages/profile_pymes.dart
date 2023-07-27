@@ -13,75 +13,110 @@ class ProfilePymesPage extends StatelessWidget {
       backgroundColor: DataColors.colorWhite,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: SizedBox(
-            height: SizeResponsize.sizeScreenHeigth,
-            width: SizeResponsize.sizeScreenWidth,
-            child: Column(
-              children: [
-                photoAndBanner(),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: SizeResponsize.textSize(20),
-                    vertical: SizeResponsize.textSize(5),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Farmacias del Ahorro', // NAME
+          child: Column(
+            children: [
+              photoAndBanner(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: SizeResponsize.textSize(20),
+                  vertical: SizeResponsize.textSize(5),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Farmacias del Ahorro', // NAME
+                      style: TextStyle(
+                          fontSize: SizeResponsize.textSize(20),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        // Descripcion
+                        'Con el Monedero del Ahorro disfruta de grandes beneficios al realizar tus compras online. Visítanos y descubre las mejores promociones que tenemos para ti.',
                         style: TextStyle(
-                            fontSize: SizeResponsize.textSize(20),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Text(
-                          // Descripcion
-                          'Con el Monedero del Ahorro disfruta de grandes beneficios al realizar tus compras online. Visítanos y descubre las mejores promociones que tenemos para ti.',
-                          style: TextStyle(
-                            fontSize: SizeResponsize.textSize(12),
-                          ),
-                          textAlign: TextAlign.justify,
+                          fontSize: SizeResponsize.textSize(12),
                         ),
+                        textAlign: TextAlign.justify,
                       ),
-                      const Divider(
-                        thickness: 2,
+                    ),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    DatasCustomPymes(
+                      label: 'Sitio Web',
+                      url: 'www.fahorro.com',
+                      onPressed: () {},
+                    ),
+                    DatasCustomPymes(
+                      label: 'Numero telefonico',
+                      url: '+52 961 576 9875',
+                      onPressed: () {},
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: SizeResponsize.textSize(10),
                       ),
-                      DatasCustomPymes(
-                        label: 'Sitio Web',
-                        url: 'www.fahorro.com',
-                        onPressed: () {},
+                      child: Text(
+                        'San Roque, Tuxtla Gutierrez (29040)',
+                        style: TextStyle(
+                            fontSize: SizeResponsize.textSize(15),
+                            fontWeight: FontWeight.w400),
                       ),
-                      DatasCustomPymes(
-                        label: 'Numero telefonico',
-                        url: '+52 961 576 9875',
-                        onPressed: () {},
+                    ),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    Container(
+                      height: SizeResponsize.textSize(200),
+                      width: double.infinity,
+                      color: const Color(0xFF000000),
+                      child: const MapGoogleCustomerProfileRegister(
+                        latitud: 16.75065066419195,
+                        longitud: -93.11498564903523,
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: SizeResponsize.textSize(10),
-                        ),
+                    ),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: SizeResponsize.textSize(10)),
+                      child: Align(
+                        alignment: Alignment.center,
                         child: Text(
-                          'San Roque, Tuxtla Gutierrez (29040)',
+                          'Productos y/o  Servicios',
                           style: TextStyle(
                               fontSize: SizeResponsize.textSize(15),
-                              fontWeight: FontWeight.w400),
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const Divider(
-                        thickness: 2,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: const Offset(
+                              0,
+                              2,
+                            ), // Cambia la posición del sombreado
+                          ),
+                        ],
                       ),
-                      // const SizedBox(
-                      //   child: MapGoogleCustomerProfileRegister(
-                      //     latitud: 16.750668237687478,
-                      //     longitud: -93.1149489446051,
-                      //   ),
-                      // )
-                    ],
-                  ),
+                      child: const Center(
+                        child: Text('Container con sombra'),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
