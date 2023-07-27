@@ -1,6 +1,7 @@
 import 'package:finder_pymes/feature/consumer/presentation/pages/profile.dart';
 import 'package:finder_pymes/feature/consumer/presentation/pages/register.dart';
 import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
+import 'package:finder_pymes/feature/consumer/presentation/provider/data_consumer_provider.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/bottom_customer.dart';
 import 'package:finder_pymes/feature/consumer/presentation/widgets/textformfield_customer.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';
@@ -148,10 +149,17 @@ class LoginConsumer extends StatelessWidget {
                     CustomerElevateBottom(
                       label: 'Iniciar Sesión',
                       onPressed: () async {
+                        final pymesProvider =
+                            Provider.of<PymesProvider>(context, listen: false);
                         if (keyFormLogin.currentState!.validate()) {
                           try {
                             await consumerProvider.loginConsumer(
-                                emailController.text, passwordController.text);
+                              emailController.text,
+                              passwordController.text,
+                            );
+
+                            pymesProvider
+                                .checkIfTheConsumerHasAnPyme(consumerProvider);
                             // ignore: use_build_context_synchronously
                             showDialogWelcome(context, consumerProvider);
                           } catch (e) {

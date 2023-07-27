@@ -1,5 +1,5 @@
 import 'package:finder_pymes/feature/pymes/presentation/widgets/four_step_register_pymes.dart';
-import 'package:finder_pymes/feature/pymes/presentation/widgets/oneStepRegisterPymes.dart';
+import 'package:finder_pymes/feature/pymes/presentation/widgets/one_step_register_pymes.dart';
 import 'package:finder_pymes/feature/pymes/presentation/widgets/three_step_register_pymes.dart';
 import 'package:finder_pymes/feature/pymes/presentation/widgets/two_step_register_pymes.dart';
 import 'package:finder_pymes/settings/size_responsive.dart';

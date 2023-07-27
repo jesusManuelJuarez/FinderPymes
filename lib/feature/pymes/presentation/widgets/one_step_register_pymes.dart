@@ -63,7 +63,7 @@ class OneStepRegisterPymes extends StatelessWidget {
             SizedBox(
               width: SizeResponsize.sizeScreenWidth,
               height: SizeResponsize.blockSizeVertical(6),
-              child: CategoryDropdown(),
+              child: const CategoryDropdown(),
             ),
             const CustomRichaText(
               label: 'Sitio Web',

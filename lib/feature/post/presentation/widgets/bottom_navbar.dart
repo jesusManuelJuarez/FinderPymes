@@ -67,16 +67,15 @@ Widget customBottomNavigationBar(
                 height: 60,
                 child: IconButton(
                   onPressed: () {
-                    Widget? nextPage;
                     if (optionSelectToColor != 2) {
-                      if (consumerProvider.loggedInConsumer == null) {
-                        nextPage = const RegisterPymesPage();
-                      } else if (pymesProvider.listPymesData.any((pymes) =>
-                          consumerProvider.loggedInConsumer!.id ==
-                          pymes.idConsumer)) {
-                        nextPage = const ProfilePymesPage();
-                      }
-                      if (nextPage != null) {
+                      if (pymesProvider.consuemerHasAnPyme == true) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfilePymesPage(),
+                          ),
+                        );
+                      } else {
                         Navigator.push(
                           context,
                           MaterialPageRoute(

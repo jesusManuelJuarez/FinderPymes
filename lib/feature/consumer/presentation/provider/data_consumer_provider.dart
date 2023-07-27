@@ -1,3 +1,4 @@
+import 'package:finder_pymes/feature/consumer/presentation/provider/consumer_provider.dart';
 import 'package:finder_pymes/feature/pymes/domain/entities/pymes_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,20 @@ class PymesProvider with ChangeNotifier {
     ),
   ];
 
+  bool? _consumerHasAnPyme;
+
   List<PymesData> get listPymesData => _pymesDataList;
   List<PymesAddress> get listPymesAddress => _pymesAddressList;
   List<PymesFiscal> get listPymesFiscal => _pymesFiscalList;
+  bool? get consuemerHasAnPyme => _consumerHasAnPyme;
+
+  void checkIfTheConsumerHasAnPyme(ConsumerProvider consumerProvider) {
+    for (var pyme in _pymesDataList) {
+      if (consumerProvider.loggedInConsumer!.id == pyme.idConsumer) {
+        _consumerHasAnPyme = true;
+        notifyListeners();
+        break;
+      }
+    }
+  }
 }
